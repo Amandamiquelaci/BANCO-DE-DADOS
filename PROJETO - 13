@@ -1,0 +1,129 @@
+#traz colunas especificas
+SELECT nome, ano
+FROM cursos;
+
+#traz os diferentes 
+SELECT DISTINCT totaulas
+FROM cursos;
+
+#Traz a contagem de cursos
+SELECT COUNT(DISTINCT nome)
+FROM cursos;
+
+/*Tabela: alunos 
+id nome idade turma 
+1 Ana 14 8A 
+2 Bruno 15 9B 
+3 Carla 13 7A 
+4 Daniel 14 8B */
+
+CREATE DATABASE alunos
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE alunos ;
+
+#criando tabela
+create table if not exists alunos (
+id INT NOT NULL AUTO_INCREMENT,
+nome varchar (30) not null unique, #N se repete
+idade INT NOT NULL,
+turma VARCHAR(10) NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+#inserindo dados
+
+INSERT INTO alunos (nome, idade, turma) VALUES
+('Ana', 14, '8A'),
+('Bruno', 15, '9B'),
+('Carla', 13, '7A'),
+('Daniel', 14, '8B');
+
+
+CREATE TABLE IF NOT EXISTS professores (
+  id INT NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(30) NOT NULL UNIQUE,
+  materia VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+INSERT INTO professores (nome, materia) VALUES
+('Joana', 'Matemática'),
+('Marcos', 'História'),
+('Fernanda', 'Geografia');
+
+#Exercícios Simples com SELECT e FROM 
+/*Tabela: alunos*/
+
+/*Mostre todos os dados da tabela alunos.*/
+SELECT * FROM alunos;
+
+/*2. Liste apenas os nomes dos alunos. */
+SELECT nome FROM alunos;
+
+/*3. Liste os nomes e idades dos alunos.*/
+
+SELECT nome, idade FROM alunos;
+
+/*4. Liste o nome e a turma de todos os alunos.*/
+SELECT nome, turma FROM alunos;
+
+/*5. Liste a idade de todos os alunos. */
+SELECT nome, turma FROM alunos;
+
+/*5. Liste a idade de todos os alunos. */
+SELECT idade FROM alunos;
+
+/*6. Selecione os dados da coluna turma. */
+
+SELECT idade FROM alunos;
+/*7. Mostre todos os alunos com as colunas id, nome, e turma. */
+SELECT id, nome, turma FROM alunos;
+
+/*8. Selecione todos os campos da tabela alunos usando o asterisco (*). */
+SELECT * FROM alunos;
+
+/*9. Mostre o nome de todos os alunos sem repetir (use DISTINCT).*/
+SELECT DISTINCT nome FROM alunos;
+
+/*10. Liste os nomes dos alunos e os ordene por ordem alfabética*/
+
+SELECT nome FROM alunos
+ORDER BY nome ASC;
+
+#Tabela: professores
+
+SELECT * FROM professores;
+/*11. Mostre todos os dados da tabela professores. */
+SELECT * FROM professores;
+
+/*12. Liste apenas os nomes dos professores. */
+
+SELECT nome FROM professores;
+
+
+/*13. Liste os nomes e as matérias que cada professor leciona.*/ 
+
+SELECT nome, materia FROM professores;
+
+
+/*14. Selecione o nome do professor e a coluna id. */
+
+SELECT nome, id FROM professores;
+
+
+/*15. Mostre a matéria de todos os professores.*/
+
+SELECT materia FROM professores;
+
+
+
+
+/*16. Use o * para mostrar todos os dados dos professores.*/
+
+SELECT * FROM professores;
+
+
+
