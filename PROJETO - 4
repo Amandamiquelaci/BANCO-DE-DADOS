@@ -1,0 +1,469 @@
+/*•  Escola de Música 
+• Alunos: Registre 3 alunos com nome e instrumento, como Lucas Almeida 
+(guitarra), Fernanda Silva (piano) e Ricardo Costa (bateria). 
+• Professores: Adicione 3 professores com nome e instrumento, como Maria 
+Souza (guitarra), João Santos (piano) e Carlos Oliveira (bateria). 
+• Aulas: Insira 3 aulas com aluno, professor e data, como Lucas com Maria em 
+28/07, Fernanda com João em 28/07, e Ricardo com Carlos em 28/07.*/
+#CRIANDO BANCO DE DADOS 
+create database alunos
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#selecionando banco de dados
+use alunos;
+
+#tabela clientes
+CREATE TABLE alunos ( 
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    instrumento VARCHAR(15),
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+INSERT INTO alunos (nome, instrumento)
+ VALUES
+('Lucas Almeida', 'Guitarra'),
+('Fernanda Silva','Piano'),
+('Ricardo Costa','Bateria');
+
+select * from alunos;
+
+#tabela professores
+
+CREATE TABLE professores ( 
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    instrumento VARCHAR(15),
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+INSERT INTO professores (nome, instrumento) VALUES
+('Maria Souza', 'Guitarra'),
+('João Santos','Piano'),
+('Carlos Oliveira','Bateria');
+
+select * from professores;
+
+#Tabela Aulas
+
+CREATE TABLE aula ( 
+    id INT NOT NULL AUTO_INCREMENT,
+    professor VARCHAR(50) NOT NULL,
+    data VARCHAR(15),
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+INSERT INTO aula (professor, data) VALUES
+('Lucas com Maria', '28/07'),
+('Fernanda com João','28/07'),
+('Ricardo com Carlos','28/07');
+
+
+/*•  Agência de Viagem 
+• Destinos: Registre 3 destinos turísticos, como Paris (5000,00), Nova York 
+(4000,00) e Tokyo (6000,00). 
+• Clientes: Insira 3 clientes com nome e telefone, como Beatriz Lima, Carlos 
+Marques e Patrícia Rocha. 
+• Reservas: Registre 3 reservas, como Beatriz para Paris, Carlos para Nova York 
+e Patrícia para Tokyo.*/
+
+#Criando o banco de dados
+CREATE DATABASE agencia_viagem
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE agencia_viagem;
+
+#Criando a tabela de destinos turísticos
+CREATE TABLE destinos ( 
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    custo DECIMAL(10,2) NOT NULL, -- Usando DECIMAL para valores monetários
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+#Inserindo os destinos turísticos com o custo
+INSERT INTO destinos (nome, custo) VALUES
+('Paris', 5000.00),
+('Nova York', 4000.00),
+('Tokyo', 6000.00);
+select * from destinos;
+
+CREATE TABLE cliente ( 
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    telefone varchar(100),# Definindo tamanho para armazenar o telefone
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+#Inserindo os dados dos clientes
+INSERT INTO cliente (nome, telefone) 
+VALUES
+('Beatriz Lima', '1234-5678'),
+('Carlos Marques', '9876-5432'),
+('Patrícia Rocha', '1122-3344');
+
+
+
+select * from cliente;
+
+drop table reservaviagem;
+
+CREATE TABLE reservaviagem (
+    id INT NOT NULL AUTO_INCREMENT,
+    nomeCliente varchar(30),
+    destino varchar(30),
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+# Inserindo as reservas
+
+INSERT INTO reservaviagem(nomeCliente,destino)
+ VALUES
+('Beatriz Lima','Paris');
+
+
+select * from reservaviagem;
+
+/*•  Loja de Informática 
+• Produtos: Registre 3 produtos, como Laptop Dell (3000,00), Smartphone 
+Samsung (2000,00) e Mouse Logitech (100,00). 
+• Fornecedores: Cadastre 3 fornecedores, como Tech Supply, Smart World e 
+Electro Solutions. 
+• Entradas de Estoque: Adicione 3 entradas de estoque, como 50 unidades de 
+Laptop Dell, 30 de Smartphone Samsung e 100 de Mouse Logitech.*/
+
+CREATE DATABASE lojainformatica
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE lojainformatica;
+
+#Criando a tabela produtos
+CREATE TABLE produtosinformatica (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   custo decimal(10,2) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+#Inserindo os dados
+
+INSERT INTO produtosinformatica (nome, custo) 
+VALUES
+('Laptop Dell', 3000), #quando e numero decimal nao colocar aspas 
+('Smartphone Samsung', 2000),
+('Mouse Logitech', 100);
+
+select * from  produtosinformatica;   
+/*• Fornecedores: Cadastre 3 fornecedores, como Tech Supply, Smart World e 
+Electro Solutions. */
+CREATE TABLE fornecedores (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(1000) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+#Inserindo os dados
+INSERT INTO fornecedores (nome) 
+VALUES
+('Tech Supply'), 
+('Smart World'),
+('Electro Solutions');
+
+select * from  fornecedores;   
+/*Entradas de Estoque: Adicione 3 entradas de estoque, como 50 unidades de 
+Laptop Dell, 30 de Smartphone Samsung e 100 de Mouse Logitech.*/
+CREATE TABLE estoque (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(1000) NOT NULL,
+   quantidadeEstoque int,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+#Inserindo os dados
+INSERT INTO estoque (nome, quantidadeEstoque) 
+VALUES
+('Laptop Dell', 50), #quando e numero decimal nao colocar aspas 
+('Smartphone Samsung',30),
+('Mouse Logitech',100);
+select * from  estoque; 
+
+/*•  Clínica Veterinária 
+• Animais: Registre 3 animais com nome e espécie, como Rex (cachorro), Luna 
+(gato) e Mel (cachorro). 
+• Veterinários: Adicione 3 veterinários com nome e especialidade, como Dr. João 
+Costa (cirurgia), Dra. Mariana Silva (dermatologia) e Dr. Pedro Lima (clínico 
+geral). 
+• Consultas: Insira 3 consultas, como Rex com Dr. João, Luna com Dra. Mariana 
+e Mel com Dr. Pedro, em datas diferentes.*/
+CREATE DATABASE clinicaveterinaria
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE clinicaveterinaria;
+
+#Criando a tabela produtos
+CREATE TABLE animais (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   especie varchar(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+#Inserindo os dados
+INSERT INTO animais(nome, especie) 
+VALUES
+('Rex','Cachorro'), 
+('Luna','Gato'),
+('Mel','Cachorro');
+
+select * from  animais; 
+/*• Veterinários: Adicione 3 veterinários com nome e especialidade, como Dr. João 
+Costa (cirurgia), Dra. Mariana Silva (dermatologia) e Dr. Pedro Lima (clínico 
+geral). */
+
+CREATE TABLE veterinarios (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   especialidade varchar(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+#Inserindo os dados
+INSERT INTO veterinarios (nome, especialidade) VALUES
+('Dr. João Costa', 'Cirurgia'),
+('Dra. Mariana Silva', 'Dermatologia'),
+('Dr. Pedro Lima', 'Clínico Geral');
+
+select * from  veterinarios; 
+/*• Consultas: Insira 3 consultas, como Rex com Dr. João, Luna com Dra. Mariana 
+e Mel com Dr. Pedro, em datas diferentes.*/
+-- Corrigindo o nome da tabela e os campos
+
+CREATE TABLE consultas (
+   id INT NOT NULL AUTO_INCREMENT,
+   veterinario_nome VARCHAR(100) NOT NULL,
+   animal_nome VARCHAR(100) NOT NULL,
+   data_consulta DATE NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+#Inserindo os dados
+INSERT INTO consultas (veterinario_nome, animal_nome, data_consulta) VALUES
+('Dr. João Costa', 'Rex', '2025-05-30'),
+('Dra. Mariana Silva', 'Luna', '2025-05-03'),
+('Dr. Pedro Lima', 'Mel', '2025-05-05');
+
+#abrir mysql , e abrir novamente onde parou  file, OPEN SQL SCRIPIT, IR NA PASTA ABRIR, 
+
+
+/*•  Empresa de Recursos Humanos 
+• Funcionários: Registre 3 funcionários com nome, cargo e departamento, como 
+Ana Costa (Gerente, Vendas), Roberto Lima (Assistente, RH) e Mariana Souza 
+(Analista, TI). 
+• Departamentos: Adicione 3 departamentos, como Vendas, RH e TI, com o 
+nome do gerente. 
+• Avaliações: Insira 3 avaliações de desempenho para os funcionários, com nota e 
+data.*/
+
+CREATE DATABASE empresa
+DEFAULT CHARACTER SET utf8mb4
+DEFAULT COLLATE utf8mb4_general_ci;
+
+USE empresa;
+#Criando a tabela produtos
+
+CREATE TABLE funcionarios (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   cargo varchar(100) NOT NULL,
+   departamento varchar(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+#Inserindo os dados
+INSERT INTO funcionarios (nome, cargo, departamento) 
+VALUES 
+    ('Ana Costa', 'Gerente', 'Vendas'),
+    ('Roberto Lima', 'Assistente', 'RH'),
+    ('Mariana Souza', 'Analista', 'TI');
+/*• Departamentos: Adicione 3 departamentos, como Vendas, RH e TI, com o 
+nome do gerente. 
+*/
+CREATE TABLE departamentos (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome_departamento varchar(100) NOT NULL,
+   gerente varchar(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+#Inserindo os dados
+INSERT INTO departamentos (nome_departamento, gerente) 
+VALUES 
+    ('Vendas', 'Ana Costa'),
+    ('RH', 'Roberto Lima'),
+    ('TI', 'Mariana Souza');
+/*• Avaliações: Insira 3 avaliações de desempenho para os funcionários, com nota e 
+data.*/
+CREATE TABLE avaliacoes (
+   id INT NOT NULL AUTO_INCREMENT,
+   id_funcionario INT NOT NULL,
+   nota DECIMAL(3,2) NOT NULL,
+   data_avaliacao DATE NOT NULL,
+   PRIMARY KEY (id),
+   FOREIGN KEY (id_funcionario) REFERENCES funcionarios(id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+
+INSERT INTO avaliacoes (id_funcionario, nota, data_avaliacao) 
+VALUES 
+    (1, 8.5, '2025-07-30'),  -- Avaliação de Ana Costa
+    (2, 7.0, '2025-07-30'),  -- Avaliação de Roberto Lima
+    (3, 9.0, '2025-07-30');  -- Avaliação de Mariana Souza
+
+
+
+/*•  Universidade 
+• Estudantes: Registre 3 estudantes com nome e curso, como Lucas Almeida 
+(Engenharia), Fernanda Silva (Medicina) e Roberto Costa (Arquitetura). 
+• Professores: Adicione 3 professores com nome e departamento, como Prof. 
+João Santos (Engenharia), Prof. Maria Oliveira (Medicina) e Prof. Carlos Lima 
+(Arquitetura). 
+• Disciplinas: Registre 3 disciplinas com nome e professor, como Cálculo com 
+Prof. João, Anatomia com Prof. Maria e Desenho com Prof. Carlos.*/
+
+CREATE DATABASE universidade
+DEFAULT CHARACTER SET utf8mb4
+DEFAULT COLLATE utf8mb4_general_ci;
+
+USE universidade;
+
+CREATE TABLE estudante (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome_estudante VARCHAR(100) NOT NULL,
+   curso VARCHAR(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+
+#Inserindo os dados
+INSERT INTO estudante (nome_estudante, curso) 
+VALUES 
+    ('Lucas Almeida', 'Engenharia'),
+    ('Fernanda Silva', 'Medicina'),
+    ('Roberto Costa', 'Arquitetura');
+    
+    
+    CREATE TABLE professore (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome_professor VARCHAR(100) NOT NULL,
+   departamento VARCHAR(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+INSERT INTO professore (nome_professor, departamento) 
+VALUES 
+    ('Prof. João Santos', 'Engenharia'),
+    ('Prof. Maria Oliveira', 'Medicina'),
+    ('Prof. Carlos Lima', 'Arquitetura');
+
+CREATE TABLE disciplinas (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome_disciplina VARCHAR(100) NOT NULL,
+   professor VARCHAR(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+INSERT INTO disciplinas (nome_disciplina, professor) 
+VALUES 
+    ('Cálculo', 'Prof. João Santos'),
+    ('Anatomia', 'Prof. Maria Oliveira'),
+    ('Desenho', 'Prof. Carlos Lima');
+
+
+/*•  Studio Fotográfico 
+• Clientes: Registre 3 clientes com nome e telefone, como Ana Souza, Roberto 
+Silva e Juliana Costa. 
+• Serviços: Adicione 3 serviços fotográficos, como Book fotográfico, Casamento 
+e Aniversário. 
+• Agendamentos: Registre 3 agendamentos de clientes, como Ana para Book 
+fotográfico, Roberto para Casamento e Juliana para Aniversário.*/
+
+CREATE DATABASE fotografo
+DEFAULT CHARACTER SET utf8mb4
+DEFAULT COLLATE utf8mb4_general_ci;
+
+USE fotografo;
+CREATE TABLE clientes (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome_cliente VARCHAR(100) NOT NULL,
+   telefone VARCHAR(15) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+INSERT INTO clientes (nome_cliente, telefone) 
+VALUES 
+    ('Ana Souza', '11987654321'),
+    ('Roberto Silva', '11876543210'),
+    ('Juliana Costa', '11765432109');
+
+
+CREATE TABLE servicos (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome_servico VARCHAR(100) NOT NULL,
+   PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+INSERT INTO servicos (nome_servico) 
+VALUES 
+    ('Book fotográfico'),
+    ('Casamento'),
+    ('Aniversário');
+
+
+CREATE TABLE agendamento(
+   id INT NOT NULL AUTO_INCREMENT,
+   cliente varchar(100),
+   agendamento DATE NOT NULL,
+   PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+
+drop table agendamento;
+
+
+INSERT INTO agendamento (cliente,agendamento) 
+VALUES 
+    ('Ana Souza ', '2025-08-01'),
+    ('Roberto Silva', '2025-05-10'),
+    ('Juliana Costa', '2025-02-10');
+  
+    
+     
+
+
+
+
