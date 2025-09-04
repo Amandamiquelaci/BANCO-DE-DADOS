@@ -1,0 +1,456 @@
+nome varchar(30),
+idade tinyint,
+sexo char(1),
+peso float,
+altura float,
+nacionalidade varchar (20),
+profissao varchar (40)
+);
+
+#mudar o nome da coluna
+alter table pessoas
+change column profissao prof varchar (20);
+
+#mudar o nome da tabela
+alter table pessoas
+rename to cadastro;
+
+
+
+/*Exercício 1 
+Tabela: pessoas(id, nome, profissao, idade) 
+Tarefa: Renomeie a coluna profissao para prof. */
+
+CREATE DATABASE pessoas
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE pessoas;
+
+#Criando a tabela 
+CREATE TABLE pessoas (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   profissao varchar(100) NOT NULL,
+   idade tinyint,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+
+alter table pessoas
+change column profissao prof varchar (20);
+
+
+/*Exercício 2 
+Tabela: clientes(id, nome, email, telefone) 
+Tarefa: Renomeie a coluna telefone para contato_telefone. */
+
+CREATE TABLE clientes (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   email varchar(100) NOT NULL,
+   telefone int,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table clientes
+change column telefone contato_telefone  varchar (20);
+
+/*Exercício 3 
+Tabela: produtos(id, nome_produto, preco, estoque) 
+Tarefa: Renomeie a coluna nome_produto para descricao. */
+
+
+CREATE TABLE produtos (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome_produto varchar(100) NOT NULL,
+   preco float,
+   telefone int,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table produtos
+change column nome_produto descricao  varchar (20);
+
+/*Exercício 4 
+Tabela: alunos(id, nome, idade, genero) 
+Tarefa: Renomeie a coluna genero para sexo.*/
+
+CREATE TABLE alunos (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   idade int,
+   genero char(1),
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table alunos
+change column genero sexo  varchar (20);
+
+/*Exercício 5 
+Tabela: funcionarios(id, nome, salario, departamento) 
+Tarefa: Renomeie a coluna departamento para setor. 
+*/
+
+CREATE TABLE funcionarios (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   salario DECIMAL(10, 2) NOT NULL,  
+   departamento CHAR(1),
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table funcionarios
+change column departamento setor  varchar (20);
+
+/*Exercício 6 
+Tabela: vendas(id, data_venda, valor_total) 
+Tarefa: Renomeie a coluna valor_total para total_venda.*/
+
+CREATE TABLE vendas (
+   id INT NOT NULL AUTO_INCREMENT,
+   data_venda DATETIME NOT NULL,  
+   valor_total DECIMAL(10, 2) NOT NULL,  
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table vendas
+change column valor_total total_venda varchar (20);
+
+/*Exercício 7 
+Tabela: livros(id, titulo, autor, ano_publicacao) 
+Tarefa: Renomeie a coluna ano_publicacao para ano_lancamento. */
+
+CREATE TABLE livros (
+   id INT NOT NULL AUTO_INCREMENT,
+   titulo VARCHAR(255) NOT NULL,  
+   autor VARCHAR(100) NOT NULL,   
+   ano_publicacao INT NOT NULL,   
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table livros
+change column ano_publicacao ano_lancamento varchar (20);
+
+/*Exercício 8 
+Tabela: usuarios(id, usuario, senha, email) 
+Tarefa: Renomeie a coluna usuario para login.*/
+
+CREATE TABLE usuarios (
+   id INT NOT NULL AUTO_INCREMENT,
+   usuario VARCHAR(50) NOT NULL,  
+   senha VARCHAR(255) NOT NULL,   
+   email VARCHAR(100) NOT NULL,  
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table usuarios
+change column usuario login varchar (20);
+
+/*Exercício 9 
+Tabela: pacientes(id, nome, nascimento, cpf) 
+Tarefa: Renomeie a coluna nascimento para data_nascimento.*/
+
+CREATE TABLE pacientes (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome VARCHAR(100) NOT NULL,       
+   nascimento DATE NOT NULL,         
+   cpf CHAR(11) NOT NULL,            
+   PRIMARY KEY (id),
+   UNIQUE (cpf)                      
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table pacientes
+change column nascimento data_nascimenton varchar (20);
+
+/*Exercício 10 
+Tabela: carros(id, modelo, cor, ano) 
+Tarefa: Renomeie a coluna ano para ano_fabricacao. 
+*/
+CREATE TABLE carros (
+   id INT NOT NULL AUTO_INCREMENT,
+   modelo VARCHAR(100) NOT NULL,   
+   cor VARCHAR(50) NOT NULL,        
+   ano INT NOT NULL,                
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table carros
+change column ano ano_fabricacao varchar (20);
+
+/*Exercício 11 
+Tabela: enderecos(id, rua, numero, cidade) 
+Tarefa: Renomeie a coluna numero para num.*/
+
+CREATE TABLE enderecos (
+   id INT NOT NULL AUTO_INCREMENT,
+   rua VARCHAR(100) NOT NULL,   
+   numero int,        
+   cidade VARCHAR (100) NOT NULL,                
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table enderecos
+change column numero num varchar (20);
+
+/*Exercício 12 
+Tabela: pedidos(id, cliente_id, data, total) 
+Tarefa: Renomeie a coluna data para data_pedido. */
+
+CREATE TABLE pedidos (
+   id INT NOT NULL AUTO_INCREMENT,
+   cliente_id VARCHAR(100) NOT NULL,   
+   data date,        
+   total int,                
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table pedidos
+change column data  data_pedido varchar (20);
+
+/*Exercício 13 
+Tabela: notas(id, aluno_id, disciplina, nota_final) 
+Tarefa: Renomeie a coluna nota_final para media. */
+
+CREATE TABLE notas (
+   id INT NOT NULL AUTO_INCREMENT,
+   aluno_id VARCHAR(100) NOT NULL,   
+   disciplina VARCHAR(100) NOT NULL,        
+   nota_final DECIMAL(5, 2) NOT NULL,                
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE notas
+CHANGE COLUMN nota_final media DECIMAL NOT NULL;
+
+/*Exercício 14 
+Tabela: turmas(id, nome_turma, ano_letivo) 
+Tarefa: Renomeie a coluna nome_turma para turma.*/
+
+CREATE TABLE turmas (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome_turma VARCHAR(100) NOT NULL,
+   ano_letivo INT NOT NULL,                
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE turmas
+CHANGE COLUMN nome_turma turma DECIMAL NOT NULL;
+
+/*Exercício 15 
+Tabela: fornecedores(id, razao_social, cnpj) 
+Tarefa: Renomeie a coluna razao_social para nome_empresa.*/
+
+CREATE TABLE fornecedores (
+   id INT NOT NULL AUTO_INCREMENT,
+   razao_social VARCHAR(255) NOT NULL,
+   cnpj VARCHAR(14) NOT NULL,                
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE fornecedores
+CHANGE COLUMN razao_social nome_empresa DECIMAL NOT NULL;
+
+/*Exercício 16 
+Tabela: pagamentos(id, valor, data_pagamento) 
+Tarefa: Renomeie a coluna data_pagamento para pagamento_em. 
+*/
+CREATE TABLE pagamentos (
+   id INT NOT NULL AUTO_INCREMENT,
+   fornecedor_id INT NOT NULL,              
+   valor DECIMAL(10, 2) NOT NULL,            
+   data_pagamento DATE NOT NULL,            
+   PRIMARY KEY (id),
+   FOREIGN KEY (fornecedor_id) REFERENCES fornecedores(id) 
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE pagamentos
+CHANGE COLUMN data_pagamento pagamento_em DECIMAL NOT NULL;
+
+/*Exercício 17 
+Tabela: avaliacoes(id, comentario, nota) 
+Tarefa: Renomeie a coluna nota para pontuacao. */
+
+CREATE TABLE avaliacoes (
+   id INT NOT NULL AUTO_INCREMENT,
+   fornecedor_id INT NOT NULL,             
+   comentario TEXT,                         
+   nota INT NOT NULL ,
+   PRIMARY KEY (id),
+   FOREIGN KEY (fornecedor_id) REFERENCES fornecedores(id) 
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+
+ALTER TABLE avaliacoes
+CHANGE COLUMN nota pontuacao DECIMAL NOT NULL;
+
+/*Exercício 18 
+Tabela: eventos(id, nome_evento, data_evento) 
+Tarefa: Renomeie a coluna nome_evento para titulo.*/
+
+CREATE TABLE eventos (
+   id INT NOT NULL AUTO_INCREMENT,      
+   nome_evento VARCHAR(255) NOT NULL,  
+   data_evento DATE NOT NULL,          
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE eventos
+CHANGE COLUMN nome_evento titulo DECIMAL NOT NULL;
+
+/*Exercício 20 
+Tabela: disciplinas(id, nome_disciplina, professor) 
+Tarefa: Renomeie a coluna nome_disciplina para disciplina. */
+
+CREATE TABLE disciplinas (
+   id INT NOT NULL AUTO_INCREMENT,       
+   nome_disciplina VARCHAR(255) NOT NULL, 
+   professor VARCHAR(255) NOT NULL,     
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE disciplinas
+CHANGE COLUMN nome_disciplina disciplina DECIMAL NOT NULL;
+
+/*Exercício 21 
+Tabela: chamados(id, cliente, problema, status) 
+Tarefa: Renomeie a coluna status para situacao. */
+
+CREATE TABLE chamados (
+   id INT NOT NULL AUTO_INCREMENT,        
+   cliente VARCHAR(255) NOT NULL,         
+   problema TEXT NOT NULL,                
+   status VARCHAR(50) NOT NULL,           
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE chamados
+CHANGE COLUMN status situacao DECIMAL NOT NULL;
+
+/*Exercício 22 
+Tabela: mensagens(id, remetente, destinatario, conteudo) 
+Tarefa: Renomeie a coluna conteudo para mensagem. */
+
+CREATE TABLE mensagens (
+   id INT NOT NULL AUTO_INCREMENT,        
+   remetente VARCHAR(255) NOT NULL,         
+   destinatario VARCHAR(255) NOT NULL,              
+   conteudo VARCHAR(255) NOT NULL,            
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE mensagens
+CHANGE COLUMN conteudo mensagem DECIMAL NOT NULL;
+
+/*Exercício 23 
+Tabela: tarefas(id, titulo, descricao, concluida) 
+Tarefa: Renomeie a coluna concluida para finalizada. */
+
+
+
+CREATE TABLE tarefas (
+   id INT NOT NULL AUTO_INCREMENT,        
+   titulo VARCHAR(255) NOT NULL,         
+   descricao VARCHAR(255) NOT NULL,              
+   concluida VARCHAR(255) NOT NULL,            
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE tarefas
+CHANGE COLUMN concluida finalizada DECIMAL NOT NULL;
+
+/*Exercício 24 
+Tabela: reunioes(id, data_reuniao, local) 
+Tarefa: Renomeie a coluna local para sala.*/
+
+CREATE TABLE reunioes (
+   id INT NOT NULL AUTO_INCREMENT,         
+   data_reuniao DATETIME NOT NULL,         
+   local VARCHAR(255) NOT NULL,            
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE reunioes
+CHANGE COLUMN local sala DECIMAL NOT NULL;
+
+/*Exercício 25 
+Tabela: cadastros(id, nome, email, criado_em) 
+Tarefa: Renomeie a coluna criado_em para data_criacao.*/
+
+CREATE TABLE cadastros (
+   id INT NOT NULL AUTO_INCREMENT,         
+   nome VARCHAR(255) NOT NULL,             
+   email VARCHAR(255) NOT NULL UNIQUE,     
+   criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE cadastros
+CHANGE COLUMN criado_em data_criacao DECIMAL NOT NULL;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
