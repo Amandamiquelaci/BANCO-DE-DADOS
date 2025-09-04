@@ -1,0 +1,354 @@
+/*#1. alunos 
+Tabela responsável por armazenar os dados pessoais dos alunos, 
+incluindo: 
+o id: Identificador único do aluno (chave primária). 
+o nome: Nome completo do aluno. 
+o nascimento: Data de nascimento do aluno. 
+o sexo: Gênero do aluno (M ou F). 
+o peso: Peso do aluno. 
+o altura: Altura do aluno. 
+o nacionalidade: Nacionalidade do aluno (padrão: 'Brasil'). */
+
+
+
+-- Criando o banco de dados
+CREATE DATABASE clientes
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+-- Selecionando o banco de dados
+USE clientes;
+
+-- Criando a tabela alunos
+CREATE TABLE alunos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    nascimento DATE NOT NULL,
+    sexo ENUM('M', 'F') NOT NULL,
+    peso DECIMAL(5,2),
+    altura DECIMAL(4,2),
+    nacionalidade VARCHAR(50) DEFAULT 'Brasil'
+);
+
+/*2. cursos 
+Tabela para armazenar as informações sobre os cursos oferecidos, 
+incluindo: 
+o id: Identificador único do curso (chave primária). 
+o nome: Nome do curso (único). 
+o descricao: Descrição do curso. 
+o carga: Carga horária total do curso. 
+o totaulas: Número total de aulas do curso. 
+o ano: Ano em que o curso está sendo oferecido (padrão: 2025). */
+
+-- Criando a tabela cursos
+CREATE TABLE cursos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) UNIQUE NOT NULL,
+    descricao TEXT,
+    carga INT NOT NULL,
+    totaulas INT NOT NULL,
+    ano INT DEFAULT 2025
+);
+
+/*3. matriculas 
+Tabela que registra a matrícula dos alunos nos cursos, incluindo: 
+o id: Identificador único da matrícula (chave primária). 
+o idaluno: Identificador do aluno matriculado. 
+o idcurso: Identificador do curso no qual o aluno está matriculado. 
+o datamatricula: Data em que o aluno foi matriculado no curso.*/
+
+-- Criando a tabela matriculas
+CREATE TABLE matriculas (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idaluno INT NOT NULL,
+    idcurso INT NOT NULL,
+    datamatricula DATE NOT NULL,
+    FOREIGN KEY (idaluno) REFERENCES alunos(id),
+    FOREIGN KEY (idcurso) REFERENCES cursos(id)
+);
+/*1. Comando INSERT INTO 
+Este comando é usado para inserir novos registros nas tabelas do banco de 
+dados. 
+• Na tabela alunos, você usaria o INSERT INTO para adicionar novos 
+alunos ao sistema, fornecendo dados como nome, data de nascimento, 
+sexo, peso, altura e nacionalidade. Por exemplo, ao registrar um novo 
+aluno, você forneceria todos esses dados e o banco geraria 
+automaticamente o ID do aluno. 
+• Na tabela cursos, o comando INSERT INTO é utilizado para adicionar 
+novos cursos. Cada curso terá seu próprio nome, descrição, carga 
+horária, total de aulas e ano de oferecimento. 
+• Na tabela matriculas, o INSERT INTO é usado para registrar a matrícula 
+de um aluno em um curso. 
+• Comando UPDATE 
+O UPDATE é usado para atualizar os dados de registros existentes nas tabelas. 
+• Na tabela alunos, você poderia usar o UPDATE para alterar as 
+informações de um aluno, como seu peso, altura, profissão, etc. Por 
+exemplo, se um aluno atualizou sua profissão, você usaria o UPDATE 
+para mudar o campo profissao. 
+• Na tabela cursos, o UPDATE poderia ser utilizado para alterar o nome 
+do curso, a carga horária ou o ano em que o curso será ministrado. Isso 
+seria útil se o curso sofreu alguma alteração, como um novo nome ou uma 
+atualização na carga horária. 
+• Na tabela matriculas, você pode usar o UPDATE para alterar a data de 
+matrícula ou fazer qualquer outra alteração relacionada à matrícula de um 
+aluno em um curso.*/
+
+INSERT INTO alunos (nome, nascimento, sexo, peso, altura, nacionalidade)
+VALUES ('Ana Souza', '2000-05-12', 'F', 60.5, 1.65, 'Brasil');
+
+UPDATE alunos
+SET peso = 62.0, altura = 1.66
+WHERE id = 1;
+
+/*TABELA 2*/
+
+INSERT INTO cursos (nome, descricao, carga, totaulas, ano)
+VALUES ('Introdução à Programação', 'Curso básico de lógica e algoritmos', 40, 20, 2025);
+
+/*ATUALIZAR CARGA HORARIA*/
+
+UPDATE cursos
+SET carga = 45, totaulas = 22
+WHERE id = 1;
+
+/*TABELA 3 MATRICULA*/
+
+INSERT INTO matriculas (idaluno, idcurso, datamatricula)
+VALUES (1, 1, '2025-08-19');
+
+/*ATUALIZAR DATA MATRICULA*/
+
+UPDATE matriculas
+SET datamatricula = '2025-08-20'
+WHERE id = 1;
+
+/*3. Comando SELECT 
+O SELECT é utilizado para consultar os dados das tabelas. 
+• Na tabela alunos, o SELECT permite visualizar os dados de todos os 
+alunos ou filtrar os alunos por critérios como nome, sexo ou nacionalidade. 
+Por exemplo, um SELECT simples poderia mostrar todos os alunos da 
+turma, e um SELECT com WHERE poderia listar os alunos que nasceram 
+após 2000 ou que são de determinada nacionalidade. 
+• Na tabela cursos, o SELECT permite consultar quais cursos estão 
+disponíveis. Você poderia usá-lo para listar todos os cursos oferecidos no 
+ano de 2025 ou para mostrar os cursos com uma carga horária superior 
+a um determinado valor. 
+• Na tabela matriculas, um SELECT pode ser utilizado para ver quais 
+alunos estão matriculados em quais cursos. */
+/* 1-TABELA ALUNOS*/
+
+SELECT * FROM alunos;
+
+/*FILTRAR ALUNOS NASCIDOS 2000*/
+
+SELECT * FROM alunos
+WHERE nascimento > '2000-01-01';
+
+/*FILTRAR ALUNOS BRASILEIROS*/
+
+SELECT * FROM alunos
+WHERE nacionalidade = 'Brasil';
+
+/*FILTRAR ALUNAS SEXO FEMININO*/
+
+SELECT * FROM alunos
+WHERE sexo = 'F';
+
+/*2 TABELA CURSOS*/
+
+SELECT * FROM cursos;
+
+/*CURSOS OFERECIDOS 2025*/
+
+SELECT * FROM cursos
+WHERE ano = 2025;
+
+/*CARGA HORARIA CURSOS*/
+
+SELECT * FROM cursos
+WHERE carga > 40;
+
+
+/* 3 - TABELA MATRICULAS*/
+
+SELECT * FROM matriculas;
+
+/*VER QUAIS ALUNOS ESTAO MATRICULADOS*/
+
+SELECT a.nome AS aluno, c.nome AS curso, m.datamatricula
+FROM matriculas m
+JOIN alunos a ON m.idaluno = a.id
+JOIN cursos c ON m.idcurso = c.id;
+
+#Order by - Ordenação
+select * from cursos
+order by nome;
+
+#Betwenn - entre alguma coisa
+select * from cursos
+where totaulas between '20' and '25'
+order by nome;
+
+#In (dentro destes parametros)
+select * from cursos
+where ano in('2014', '2025', '2018');
+
+
+/* Exercícios com ORDER BY */
+
+/*1. Selecione todos os cursos ordenados pelo campo ano. */
+
+SELECT * FROM cursos
+ORDER BY ano ASC;
+
+/*2. Liste os cursos ordenados por totaulas de forma crescente. */
+SELECT * FROM cursos
+ORDER BY totaulas ASC;
+
+/*3. Liste os cursos ordenados por nome de forma decrescente. */
+SELECT * FROM cursos
+ORDER BY nome DESC;
+
+/*4. Liste os cursos ordenados por preco (do mais barato ao mais caro).*/ 
+SELECT * FROM cursos
+ORDER BY preco ASC;
+
+/*5. Liste os cursos ordenados por categoria e depois por nome. */
+
+SELECT * FROM cursos
+ORDER BY categoria ASC, nome ASC;
+
+/*6. Selecione os cursos ordenados por nivel de forma decrescente. */
+SELECT * FROM cursos
+ORDER BY nivel DESC;
+
+/*7. Mostre os cursos ordenados por ano mais recente primeiro. */
+SELECT * FROM cursos
+ORDER BY ano DESC;
+
+/*8. Liste os cursos ordenados por totaulas, e em caso de empate, por nome. */
+SELECT * FROM cursos
+ORDER BY totaulas ASC, nome ASC;
+
+/*9. Liste os cursos com mais aulas primeiro. */
+SELECT * FROM cursos
+ORDER BY totaulas DESC;
+
+/*10. Selecione os cursos com menor preço primeiro.*/
+SELECT * FROM cursos
+ORDER BY preco ASC;
+
+
+/* Exercícios com BETWEEN */
+
+/*11. Selecione cursos com totaulas entre 10 e 30. */
+
+select * from cursos
+where totaulas between '10' and '30'
+order by nome;
+
+/*12. Mostre os cursos com ano entre 2010 e 2020.*/ 
+select * from cursos
+where ano in('2014', '2020');
+
+/*13. Liste cursos com preco entre 100 e 300. */
+select * from cursos
+where totaulas between '100' and '300'
+order by nome;
+
+
+/*14. Selecione cursos com totaulas entre 15 e 25, ordenados por nome.*/
+
+SELECT * FROM cursos
+WHERE totaulas BETWEEN 15 AND 25
+ORDER BY nome;
+
+
+
+/*15. Liste cursos com ano entre 2015 e 2025, ordenados por ano desc. */
+SELECT * FROM cursos
+WHERE ano BETWEEN 2015 AND 2025
+ORDER BY ano DESC;
+
+
+/*16. Mostre cursos com preco entre 50 e 150, ordenados por preço. */
+SELECT * FROM cursos
+WHERE totaulas BETWEEN 5 AND 10;
+
+
+/*17. Selecione cursos com totaulas entre 5 e 10. */
+SELECT * FROM cursos
+WHERE totaulas BETWEEN 5 AND 10;
+
+
+/*18. Liste cursos com ano entre 2020 e 2022, ordenados por nome. */
+
+SELECT * FROM cursos
+WHERE ano BETWEEN 2020 AND 2022
+ORDER BY nome ASC;
+
+/*19. Liste os cursos com preco entre 200 e 500. */
+
+SELECT * FROM cursos
+WHERE preco BETWEEN 200 AND 500;
+
+/*20. Selecione cursos com totaulas entre 20 e 40 e preco entre 100 e 400.*/
+SELECT * FROM cursos
+WHERE totaulas BETWEEN 20 AND 40
+  AND preco BETWEEN 100 AND 400;
+  
+  /*Exercícios com IN */
+21. Selecione cursos com ano em (2018, 2019, 2020).*/ 
+SELECT * FROM cursos
+WHERE ano IN (2018, 2019, 2020);
+
+
+/*22. Mostre cursos com categoria em ('Programação', 'Design'). */ 
+SELECT * FROM cursos
+WHERE categoria IN ('Programação', 'Design');
+
+/*23. Liste cursos com nivel em ('Básico', 'Intermediário'). */ 
+
+SELECT * FROM cursos
+WHERE nivel IN ('Básico', 'Intermediário');
+
+/*24. Mostre cursos com preco em (100, 150, 200). */ 
+
+SELECT * FROM cursos
+WHERE preco IN (100, 150, 200);
+
+/*25. Selecione cursos com nome em ('MySQL Básico', 'HTML5', 'Python 
+Intermediário'). */ 
+
+SELECT * FROM cursos
+WHERE nome IN ('MySQL Básico', 'HTML5', 'Python Intermediário');
+
+
+/*26. Liste cursos com ano em ('2010', '2015', '2020'), ordenados por ano. */ 
+
+SELECT * FROM cursos
+WHERE ano IN (2010, 2015, 2020)
+ORDER BY ano ASC;
+
+/*27. Mostre cursos com nivel em ('Avançado') e categoria em ('Banco de Dados', 
+'Desenvolvimento'). */ 
+
+SELECT * FROM cursos
+WHERE nivel = 'Avançado'
+  AND categoria IN ('Banco de Dados', 'Desenvolvimento');
+
+
+/*28. Liste cursos com totaulas em (15, 20, 25).*/  
+SELECT * FROM cursos
+WHERE totaulas IN (15, 20, 25);
+
+
+/*29. Selecione cursos com preco em (99.90, 199.90, 299.90). */
+ SELECT * FROM cursos
+WHERE preco IN (99.90, 199.90, 299.90);
+
+
+/*30. Liste cursos com categoria em ('Administração', 'Gestão') e ordene por nome.*/
+SELECT * FROM cursos
+WHERE categoria IN ('Administração', 'Gestão')
+ORDER BY nome ASC;
