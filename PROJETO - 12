@@ -1,0 +1,401 @@
+
+
+#1) Crie uma tabela chamada clientes com colunas para id, nome e email. 
+CREATE DATABASE clientes
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE clientes ;
+
+#criando tabela
+create table if not exists clientes (
+id INT NOT NULL AUTO_INCREMENT,
+nome varchar (30) not null unique, #N se repete
+email VARCHAR(100) NOT NULL UNIQUE,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+truncate table curso; #para apagar tudo
+
+#Explicações:
+/*IF NOT EXISTS: evita erro se a tabela já existir.
+
+id: chave primária, auto incremento, não nulo.
+
+nome: obrigatório (NOT NULL), tamanho razoável para nomes.
+
+email: obrigatório e único (UNIQUE) para evitar duplicidade.
+
+DEFAULT CHARSET = utf8mb4: garante suporte a caracteres especiais e emojis.*/
+
+/*2) Crie uma tabela produtos com colunas para id, nome, preco e estoque. */
+
+
+#criando tabela
+create table if not exists produtos (
+id INT NOT NULL AUTO_INCREMENT,
+nome varchar (30) not null unique, #N se repete
+preco DECIMAL(10) UNSIGNED NOT NULL,
+estoque INT not null,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*3) Crie uma tabela vendas com colunas para id, id_cliente, id_produto e 
+data_venda.*/
+
+#criando tabela
+create table if not exists vendas (
+id INT NOT NULL AUTO_INCREMENT,
+id_cliente INT not null,
+id_produtos INT not null,
+data_venda DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*4) Crie uma tabela funcionarios com id, nome, cargo e salario. */
+
+#criando tabela
+create table if not exists funcionarios (
+	id INT NOT NULL AUTO_INCREMENT,
+	nome varchar (30) not null unique, 
+	cargo VARCHAR(50) NOT NULL,
+	salario DECIMAL(10,2) UNSIGNED NOT NULL,
+	PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*5) Crie uma tabela departamentos com id e nome.*/
+
+#criando tabela
+create table if not exists departamentos (
+	id INT NOT NULL AUTO_INCREMENT,
+	nome varchar (30) not null unique, 
+	PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*6) Crie uma tabela fornecedores com id, nome, cnpj e telefone.*/
+
+#criando tabela
+create table if not exists fornecedores (
+	id INT NOT NULL AUTO_INCREMENT,
+	nome varchar (30) not null unique, 
+    cnpj CHAR(14) NOT NULL UNIQUE,
+    telefone VARCHAR(15) NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*7) Crie uma tabela categorias com id e nome_categoria.*/
+
+#criando tabela
+create table if not exists fornecedores (
+	id INT NOT NULL AUTO_INCREMENT,
+	nome_categoria varchar (50) not null unique, 
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+
+/*8) Crie uma tabela livros com id, titulo, autor e ano_publicacao. */
+#criando tabela
+create table if not exists livros (
+	id INT NOT NULL AUTO_INCREMENT,
+	titulo VARCHAR(100) NOT NULL,
+  autor VARCHAR(100) NOT NULL,
+  ano_publicacao YEAR NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*9) Crie uma tabela alunos com id, nome, idade e email. */
+#criando tabela
+CREATE TABLE IF NOT EXISTS alunos (
+  id INT NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(100) NOT NULL,
+  idade INT UNSIGNED NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*10) Crie uma tabela cursos com id, nome e carga_horaria. */
+
+#criando tabela
+CREATE TABLE IF NOT EXISTS cursos (
+  id INT NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(100) NOT NULL,
+  idade INT UNSIGNED NOT NULL,
+  carga_horaria INT UNSIGNED NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*11) Crie uma tabela matriculas com id, id_aluno e id_curso.*/
+
+#criando tabela
+CREATE TABLE IF NOT EXISTS matriculas (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_aluno INT NOT NULL,
+  id_curso INT NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+
+/*12) Crie uma tabela pagamentos com id, valor, data_pagamento e metodo.*/
+
+#criando tabela
+CREATE TABLE IF NOT EXISTS pagamentos (
+  id INT NOT NULL AUTO_INCREMENT,
+  valor DECIMAL(10,2) NOT NULL,
+  data_pagamento DATE NOT NULL,
+  metodo VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+
+/*13) Crie uma tabela enderecos com id, rua, numero, cidade e estado.*/
+
+#criando tabela
+CREATE TABLE IF NOT EXISTS enderecos (
+  id INT NOT NULL AUTO_INCREMENT,
+  rua VARCHAR(100) NOT NULL,
+  numero VARCHAR(10) NOT NULL,
+  cidade VARCHAR(50) NOT NULL,
+  estado VARCHAR(2) NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*14) Crie uma tabela estoque com id, id_produto, quantidade e data_entrada.*/
+
+#criando tabela
+CREATE TABLE IF NOT EXISTS estoque (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_produto INT NOT NULL,
+  quantidade INT NOT NULL,
+  data_entrada DATE NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*15) Crie uma tabela usuarios com id, usuario, senha e nivel_acesso. */
+
+#criando tabela
+CREATE TABLE IF NOT EXISTS usuarios (
+  id INT NOT NULL AUTO_INCREMENT,
+  usuario VARCHAR(50) NOT NULL UNIQUE,
+  senha VARCHAR(255) NOT NULL,
+  nivel_acesso ENUM('admin', 'gerente', 'usuario') NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*16) Crie uma tabela comentarios com id, id_usuario, mensagem e data. */
+
+CREATE TABLE IF NOT EXISTS comentarios (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_usuario INT NOT NULL,
+  mensagem TEXT NOT NULL,
+  data DATETIME NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*17) Crie uma tabela avaliacoes com id, id_produto, nota e comentario. */
+
+CREATE TABLE IF NOT EXISTS avaliacoes (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_produto INT NOT NULL,
+  nota TINYINT NOT NULL CHECK (nota BETWEEN 1 AND 5),
+  comentario TEXT,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*18) Crie uma tabela filmes com id, titulo, diretor, genero e ano.*/
+
+#criando tabela
+CREATE TABLE IF NOT EXISTS filmes (
+  id INT NOT NULL AUTO_INCREMENT,
+  titulo VARCHAR(50) NOT NULL UNIQUE,
+  diretor VARCHAR(255) NOT NULL,
+  genero VARCHAR(50) NOT NULL,
+  ano YEAR NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*19) Crie uma tabela locacoes com id, id_cliente, id_filme e data_locacao.*/
+#criando tabela
+CREATE TABLE IF NOT EXISTS locacoes (
+  id INT NOT NULL AUTO_INCREMENT,
+  id_cliente INT NOT NULL,
+  id_filme INT NOT NULL,
+  data_locacao DATE NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*20) Crie uma tabela turmas com id, nome_turma e turno. */
+
+CREATE TABLE IF NOT EXISTS turmas (
+  id INT NOT NULL AUTO_INCREMENT,
+  nome_turma VARCHAR(100) NOT NULL,
+  turno ENUM('manhã', 'tarde', 'noite') NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*21) Crie uma tabela disciplinas com id, nome_disciplina e semestre. */
+
+CREATE TABLE IF NOT EXISTS disciplinas (
+  id INT NOT NULL AUTO_INCREMENT,
+  nome_disciplina VARCHAR(100) NOT NULL,
+  semestre VARCHAR(10) NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*22) Crie uma tabela professores com id, nome, formacao e telefone.*/
+
+CREATE TABLE IF NOT EXISTS professores (
+  id INT NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(100) NOT NULL,
+ formacao VARCHAR(100) NOT NULL,
+  telefone VARCHAR(20),
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*23) Crie uma tabela agenda com id, compromisso, data e hora. */
+
+CREATE TABLE IF NOT EXISTS agenda (
+  id INT NOT NULL AUTO_INCREMENT,
+  compromisso VARCHAR(255) NOT NULL,
+  data DATE NOT NULL,
+  hora TIME NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*24) Crie uma tabela mensagens com id, remetente, destinatario e conteudo*/
+
+CREATE TABLE IF NOT EXISTS mensagens (
+  id INT NOT NULL AUTO_INCREMENT,
+  remetente VARCHAR(100) NOT NULL,
+  destinatario VARCHAR(100) NOT NULL,
+  conteudo TEXT NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+/*25) Crie uma tabela chamados com id, titulo, descricao, status e 
+data_abertura. 
+*/
+CREATE TABLE IF NOT EXISTS chamados (
+  id INT NOT NULL AUTO_INCREMENT,
+  titulo VARCHAR(150) NOT NULL,
+  descricao TEXT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  data_abertura DATE NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+
+
+Exercícios de TRUNCATE TABLE no MySQL
+
+/*🔹 Diferença entre DELETE e TRUNCATE:
+
+DELETE FROM cliente;: Apaga linha por linha, pode ser mais lento e permite usar condições (WHERE).
+
+TRUNCATE TABLE cliente;: Apaga tudo de uma vez, mais rápido, mas não permite condições. Também reinicia o contador de AUTO_INCREMENT.*/
+
+/*1. Remova todos os dados da tabela clientes, mas mantenha sua estrutura.*/
+
+TRUNCATE TABLE clientes;#para apagar tudo
+
+/*2. Apague todos os registros da tabela produtos, sem excluir a tabela. */
+
+TRUNCATE TABLE produtos;
+
+/*3. Limpe todos os dados da tabela vendas.*/
+
+TRUNCATE TABLE vendas;
+
+/*4. Esvazie a tabela funcionarios, mantendo as colunas. */
+
+TRUNCATE TABLE funcionarios;
+
+/*5. Remova todo o conteúdo da tabela departamentos.*/
+
+TRUNCATE TABLE departamentos;
+
+/*6. Apague os dados da tabela fornecedores, mas sem perder a estrutura 
+da tabela. */
+
+TRUNCATE TABLE fornecedores;
+
+/*7. Limpe completamente a tabela categorias.*/
+
+TRUNCATE TABLE categorias;
+
+/*8. Apague todos os livros cadastrados da tabela livros. */
+
+TRUNCATE TABLE livros;
+
+/*9. Remova todos os registros de alunos da tabela alunos.*/
+
+TRUNCATE TABLE alunos;
+
+/*10. Esvazie os dados da tabela cursos. */
+
+TRUNCATE TABLE cursos;
+
+/*11. Remova todos os dados da tabela matriculas.*/
+
+TRUNCATE TABLE matriculas;
+
+/*12. Apague os registros da tabela pagamentos, sem alterar sua estrutura.*/
+
+TRUNCATE TABLE pagamentos;
+
+/*13. Limpe a tabela enderecos, apagando todos os dados.*/
+
+TRUNCATE TABLE enderecos;
+
+/*14. Esvazie completamente a tabela estoque.*/
+
+TRUNCATE TABLE estoque;
+
+
+/*15. Remova todos os usuários cadastrados da tabela usuarios.*/
+
+TRUNCATE TABLE usuarios;
+
+/*16. Apague todos os comentários da tabela comentarios. */
+
+TRUNCATE TABLE comentarios;
+
+/*17. Limpe as avaliações da tabela avaliacoes. */
+
+TRUNCATE TABLE avaliacoes;
+
+/*18. Apague todos os filmes cadastrados da tabela filmes.*/
+
+TRUNCATE TABLE filmes;
+
+/*19. Esvazie a tabela locacoes, mantendo sua estrutura.*/
+
+TRUNCATE TABLE locacoes;
+
+/*20. Remova todos os registros da tabela turmas.*/
+
+TRUNCATE TABLE turmas;
+
+/*21. Apague os dados da tabela disciplinas.*/
+
+TRUNCATE TABLE disciplinas;
+
+/*22. Limpe todos os registros da tabela professores. */
+
+TRUNCATE TABLE professores;
+
+/*23. Esvazie os compromissos salvos na tabela agenda.*/
+
+TRUNCATE TABLE agenda;
+
+/*24. Apague todas as mensagens da tabela mensagens.*/
+
+TRUNCATE TABLE mensagens;
+
+/*25. Remova todos os dados de chamados da tabela chamados.*/
+
+TRUNCATE TABLE chamados;
+
