@@ -1,0 +1,193 @@
+CREATE DATABASE cursos 
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE cursos ;
+
+#criando tabela
+create table if not exists cursos (
+id INT NOT NULL AUTO_INCREMENT,
+nome varchar (30) not null unique, #N se repete
+descricao text, #Sem tamanho defenido
+carga int unsigned, # N aceita valor negativo
+totaulas int unsigned,
+ano year default '2025' ,
+primary key (id)
+) DEFAULT CHARSET = utf8mb4 ;
+
+insert into cursos(nome,descricao,carga,totaulas,ano)
+values ("java", "Programação", 30,15,2025);
+
+select * from cursos;
+
+update cursos
+set nome = "Python"
+where id = '1';
+
+CREATE DATABASE escola
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE escola ;
+
+CREATE TABLE alunos ( 
+id INT PRIMARY KEY AUTO_INCREMENT, 
+nome VARCHAR(100), 
+idade INT, 
+curso VARCHAR(100)
+
+); 
+
+
+INSERT INTO alunos (nome, idade, curso) VALUES 
+('Ana', 17, 'História'), 
+('Bruno', 22, 'Matemática'), 
+('Carlos', 28, 'Física'), 
+('Daniela', 21, 'Biologia'), 
+('Eduardo', 35, 'Matemática'), 
+('Fernanda', 19, 'Física'), 
+('Gabriel', 23, 'Administração'), 
+('Helena', 26, 'Direito'), 
+('Igor', 30, 'Engenharia'), 
+('João', 18, 'História'), 
+('Katia', 25, 'Letras'), 
+('Lucas', 20, 'Educação Física'), 
+('Mariana', 32, 'Psicologia'), 
+('Nicolas', 22, 'Filosofia'), 
+('Olívia', 27, 'Matemática'), 
+('Pedro', 24, 'Física'), 
+('Queila', 29, 'Arquitetura'), 
+('Rafael', 31, 'Medicina'), 
+('Sabrina', 19, 'Biologia'), 
+('Thiago', 40, 'Direito'); 
+
+#1. Atualizar a idade do aluno com id = 1 para 21 anos.
+
+UPDATE alunos
+SET idade = 21
+WHERE id = 1;
+
+#2. Alterar o nome do aluno com id = 2 para 'João Pedro'. 
+UPDATE alunos
+SET nome = 'João Pedro'
+WHERE id = 2;
+
+# 3. Mudar o curso do aluno com id = 3 para 'Administração'.
+
+UPDATE alunos
+SET curso = 'Administração'
+WHERE id = 3;
+
+#4. Atualizar a idade do aluno com id = 4 para 23 anos.
+
+UPDATE alunos
+SET idade = 23
+WHERE id = 4;
+
+#5. Mudar o nome do aluno com id = 5 para 'Eduardo Oliveira'.
+
+UPDATE alunos
+SET nome = 'Eduardo Oliveira'
+WHERE id = 5;
+
+#6. Alterar o curso do aluno com id = 6 para 'Biologia'.
+
+UPDATE alunos
+SET curso = 'Biologia'
+WHERE id = 6;
+
+#7. Atualizar a idade do aluno com id = 7 para 25 anos. 
+
+UPDATE alunos
+SET idade = 25
+WHERE id = 7;
+
+#8. Mudar o nome do aluno com id = 8 para 'Helena Souza'.
+
+UPDATE alunos
+SET nome = 'Helena Souza'
+WHERE id = 8;
+
+#9. Alterar o curso do aluno com id = 9 para 'Engenharia'.
+UPDATE alunos
+SET curso = 'Engenharia'
+WHERE id = 9;
+
+#10. Atualizar a idade do aluno com id = 10 para 18 anos. 
+
+UPDATE alunos
+SET idade = 18
+WHERE id = 10;
+
+#11. Alterar o curso do aluno com id = 11 para 'Letras'. 
+UPDATE alunos
+SET curso = 'Letras'
+WHERE id = 11;
+
+#12. Mudar o nome do aluno com id = 12 para 'Lucas Costa'. 
+
+UPDATE alunos
+SET nome = 'Lucas Costa'
+WHERE id = 12;
+
+#13. Alterar o curso do aluno com id = 13 para 'Psicologia'. 
+
+UPDATE alunos
+SET curso = 'Psicologia'
+WHERE id = 13;
+
+#14. Atualizar a idade do aluno com id = 14 para 31 anos.
+UPDATE alunos
+SET idade = 31
+WHERE id = 14;
+
+#15. Mudar o curso do aluno com id = 15 para 'Filosofia'. 
+
+UPDATE alunos
+SET curso = 'Filosofia'
+WHERE id = 15;
+
+#16. Alterar o nome do aluno com id = 16 para 'Olívia Pereira'.
+
+UPDATE alunos
+SET curso = 'Olívia Pereira'
+WHERE id = 16;
+
+#17. Atualizar a idade do aluno com id = 17 para 28 anos. 
+
+UPDATE alunos
+SET curso = '17'
+WHERE id = 28;
+
+#18. Alterar o curso do aluno com id = 18 para 'Arquitetura'. 
+
+UPDATE alunos
+SET curso = 'Arquitetura'
+WHERE id = 18;
+
+#19. Mudar o nome do aluno com id = 19 para 'Sabrina Silva'. 
+
+UPDATE alunos
+SET nome = 'Sabrina Silva'
+WHERE id = 19;
+
+# 20. Alterar o curso do aluno com id = 20 para 'Medicina'. 
+UPDATE alunos
+SET curso = 'Medicina'
+WHERE id = 20;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
