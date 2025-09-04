@@ -1,0 +1,51 @@
+#Criando o banco de dados restaurante
+create database restaurante;
+
+#Selecionando o banco 
+use restaurante;
+
+#Criando a tabela clientes 
+create table clientes(
+idcliente int auto_increment primary key,
+nome varchar(100) not null,
+email varchar(100) unique,
+telefone varchar (20)
+);
+
+
+
+#Inserir 3 clientes 
+  INSERT INTO clientes (nome, email, telefone)
+VALUES
+  ('Ana Souza', 'ana.souza@email.com', '(11) 91234-5678'),
+  ('Carlos Lima', 'carlos.lima@email.com', '(21) 99876-5432'),
+  ('Fernanda Rocha', 'fernanda.rocha@email.com', '(31) 98765-4321');
+  
+  select * from clientes;
+  
+#Inserir 3 pedidos
+
+INSERT INTO pedidos (datapedido, valor, idcliente)
+VALUES
+  ("2025-09-02", 100,1),
+  ("2025-08-02", 200,2),
+  ("2025-08-04", 300,3);
+  
+   select * from pedidos;
+  
+#Desafio - Mostrar o nome cliente com valor do pedido. 
+
+SELECT  clientes.nome, pedidos.valor
+from clientes
+join pedidos on clientes.idcliente= pedidos.idcliente;
+
+
+#Desafio - mostrar valor do pedido com o nome do cliente
+
+
+
+ 
+
+
+
+
