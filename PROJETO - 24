@@ -1,0 +1,356 @@
+/*1. Relacionamento entre Clientes e Pedidos 
+• Crie duas tabelas: clientes e pedidos. A tabela clientes deve ter os campos 
+id_cliente, nome e email. A tabela pedidos deve ter os campos id_pedido, 
+id_cliente, data_pedido e valor_total. Faça uma consulta que liste todos 
+os pedidos com o nome do cliente.*/
+
+create database clientes;
+use clientes;
+#Criando a tabela clientes
+create table clientes(
+idcliente int auto_increment primary key,
+nome varchar(100),
+email varchar(100)
+);
+
+
+
+#Criando tabela pedidos
+CREATE TABLE pedidos (
+  id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+  id_cliente INT,
+  data_pedido DATE,
+  valor_total DECIMAL(10,2),
+  FOREIGN KEY (id_cliente) REFERENCES clientes(idcliente)
+);
+  
+SELECT 
+  clientes.nome, 
+  pedidos.valor_total
+FROM 
+  clientes
+JOIN 
+  pedidos ON clientes.idcliente = pedidos.id_cliente;
+
+/*2. Produtos e Categorias 
+• Crie duas tabelas: produtos e categorias. A tabela produtos deve ter 
+id_produto, nome, preco, id_categoria. A tabela categorias deve ter 
+id_categoria e nome_categoria. Crie uma consulta que mostre os produtos 
+junto com o nome da categoria.*/
+
+-- Tabela de categorias
+CREATE TABLE categorias (
+  id_categoria INT AUTO_INCREMENT PRIMARY KEY,
+  nome_categoria VARCHAR(100)
+);
+
+-- Tabela de produtos
+CREATE TABLE produtos (
+  id_produto INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100),
+  preco DECIMAL(10,2),
+  id_categoria INT,
+  FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
+);
+
+SELECT 
+  produtos.nome AS nome_produto,
+  produtos.preco,
+  categorias.nome_categoria
+FROM 
+  produtos
+INNER JOIN 
+  categorias ON produtos.id_categoria = categorias.id_categoria;
+
+/*3. Vendas e Produtos 
+• Crie duas tabelas: vendas e produtos. A tabela vendas deve conter id_venda, 
+id_produto, quantidade e data_venda. A tabela produtos deve ter 
+id_produto e nome_produto. Realize uma consulta que mostre a quantidade de 
+cada produto vendido. */
+#EXERCICIO 3 DEU ERRO CONFERIR
+-- Tabela de produtos
+CREATE TABLE IF NOT EXISTS produtos (
+  id_produto SERIAL PRIMARY KEY,
+  nome_produto VARCHAR(100)
+);
+
+
+-- Tabela de vendas
+CREATE TABLE vendas (
+  id_venda INT AUTO_INCREMENT PRIMARY KEY,
+  id_produto INT,
+  quantidade INT,
+  data_venda DATE,
+  FOREIGN KEY (id_produto) REFERENCES produtos(id_produto)
+);
+
+SELECT 
+  produtos.nome_produto,
+  SUM(vendas.quantidade) AS total_vendido
+FROM 
+  vendas
+INNER JOIN 
+  produtos ON vendas.id_produto = produtos.id_produto
+GROUP BY 
+  produtos.nome_produto;
+  
+  #EXERCICIO 3 DEU ERRO CONFERIR
+  
+  /*4. Relacionamento de Funcionários e Departamentos 
+• Crie duas tabelas: funcionarios e departamentos. A tabela funcionarios 
+deve ter id_funcionario, nome_funcionario, id_departamento. A tabela 
+departamentos deve ter id_departamento e nome_departamento. Crie uma 
+consulta para mostrar os funcionários e seus respectivos departamentos. */
+
+-- Tabela de departamentos
+CREATE TABLE departamentos (
+  id_departamento INT AUTO_INCREMENT PRIMARY KEY,
+  nome_departamento VARCHAR(100)
+);
+
+-- Tabela de funcionários
+CREATE TABLE funcionarios (
+  id_funcionario INT AUTO_INCREMENT PRIMARY KEY,
+  nome_funcionario VARCHAR(100),
+  id_departamento INT,
+  FOREIGN KEY (id_departamento) REFERENCES departamentos(id_departamento)
+);
+SELECT 
+  funcionarios.nome_funcionario,
+  departamentos.nome_departamento
+FROM 
+  funcionarios
+INNER JOIN 
+  departamentos ON funcionarios.id_departamento = departamentos.id_departamento;
+
+/*5. Estudantes e Cursos 
+• Crie duas tabelas: estudantes e cursos. A tabela estudantes deve ter 
+id_estudante, nome_estudante e email. A tabela cursos deve ter id_curso 
+e nome_curso. Crie uma tabela intermediária chamada matriculas que 
+relacione estudantes e cursos com os campos id_estudante, id_curso e 
+data_matricula.*/
+-- Tabela de cursos
+CREATE TABLE cursos (
+  id_curso INT AUTO_INCREMENT PRIMARY KEY,
+  nome_curso VARCHAR(100)
+);
+
+
+-- Tabela de estudantes 
+CREATE TABLE estudantes (
+  id_estudante INT AUTO_INCREMENT PRIMARY KEY,
+  nome_estudante VARCHAR(100),
+  email VARCHAR(100) UNIQUE,
+  id_departamento INT,
+  FOREIGN KEY (id_departamento) REFERENCES departamentos(id_departamento)
+);
+
+-- Tabela intermediária: matriculas
+CREATE TABLE matriculas (
+  id_estudante INT,
+  id_curso INT,
+  data_matricula DATE,
+  PRIMARY KEY (id_estudante, id_curso),
+  FOREIGN KEY (id_estudante) REFERENCES estudantes(id_estudante),
+  FOREIGN KEY (id_curso) REFERENCES cursos(id_curso)
+);
+
+/*6. Livros e Autores 
+• Crie duas tabelas: livros e autores. A tabela livros deve ter id_livro, 
+titulo e id_autor. A tabela autores deve ter id_autor e nome_autor. Crie 
+uma consulta que mostre todos os livros e seus respectivos autores. */
+
+-- Tabela de livros
+CREATE TABLE livros (
+  id_livro INT AUTO_INCREMENT PRIMARY KEY,
+  titulo VARCHAR(100),
+  id_autor VARCHAR(100)
+);
+
+CREATE TABLE autores (
+  id_autor INT AUTO_INCREMENT PRIMARY KEY,
+  nome_autor VARCHAR(100)
+);
+
+SELECT 
+
+  autores.nome_autor,
+  livros.titulo
+FROM 
+  livros
+INNER JOIN 
+  autores ON livros.id_autor = autores.id_autor;
+  
+  /*7. Alunos, Professores e Disciplinas 
+• Crie três tabelas: alunos, professores e disciplinas. A tabela alunos deve 
+ter id_aluno, nome, id_disciplina. A tabela professores deve ter 
+id_professor e nome_professor. A tabela disciplinas deve ter 
+id_disciplina e nome_disciplina. Realize uma consulta que mostre os 
+alunos e seus respectivos professores e disciplinas. */
+
+-- Tabela de alunos
+CREATE TABLE alunos (
+  id_aluno INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100),
+  id_disciplina VARCHAR(100)
+);
+
+-- Tabela de disciplinas
+CREATE TABLE disciplinas (
+ id_disciplina INT AUTO_INCREMENT PRIMARY KEY,
+  nome_disciplina VARCHAR(100)
+);
+
+-- Tabela de professores
+CREATE TABLE professores (
+  id_professor INT AUTO_INCREMENT PRIMARY KEY,
+  nome_professor VARCHAR(100)
+);
+#aqui eta dando errado 
+SELECT 
+  alunos.nome,
+  disciplinas.nome_disciplina,
+  professores.nome_professor
+FROM 
+  alunos
+INNER JOIN 
+  disciplinas ON alunos.id_disciplina = disciplinas.id_disciplina
+INNER JOIN 
+  professores ON disciplinas.id_professor = professores.id_professor;
+
+
+/*8. Funcionários e Projetos 
+• Crie duas tabelas: funcionarios e projetos. A tabela funcionarios deve ter 
+id_funcionario, nome_funcionario, id_projeto. A tabela projetos deve 
+ter id_projeto e nome_projeto. Crie uma consulta para listar os funcionários e 
+os projetos que eles estão alocados.*/
+-- Tabela de projetos
+CREATE TABLE projetos (
+  id_projeto INT AUTO_INCREMENT PRIMARY KEY,
+  nome_projeto VARCHAR(100)
+);
+
+-- Tabela de funcionário
+CREATE TABLE funcionario (
+  id_funcionario INT AUTO_INCREMENT PRIMARY KEY,
+  nome_funcionario VARCHAR(100),
+  id_projeto INT,
+  FOREIGN KEY (id_projeto) REFERENCES projetos(id_projeto)
+);
+
+
+SELECT 
+  funcionario.nome_funcionario,
+  projetos.nome_projeto
+FROM 
+  funcionario
+INNER JOIN 
+  projetos ON funcionario.id_projeto = projetos.id_projeto;
+  
+  
+ /* 9. Pedidos e Itens de Pedido 
+• Crie duas tabelas: pedidos e itens_pedido. A tabela pedidos deve ter 
+id_pedido, id_cliente, data_pedido. A tabela itens_pedido deve ter 
+id_item, id_pedido, id_produto, quantidade e preco_unitario. Crie uma 
+consulta que mostre todos os itens de cada pedido. */
+
+-- Tabela de pedido
+CREATE TABLE pedido (
+  id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+  id_cliente INT,
+  data_pedido DATE
+);
+
+-- Tabela de itens do pedido
+CREATE TABLE itens_pedido (
+  id_item INT AUTO_INCREMENT PRIMARY KEY,
+  id_pedido INT,
+  id_produto INT,
+  quantidade INT,
+  preco_unitario DECIMAL(10,2),
+  FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido)
+);
+
+SELECT 
+  itens_pedido.id_item,
+  itens_pedido.id_pedido,
+  itens_pedido.id_produto,
+  itens_pedido.quantidade,
+  itens_pedido.preco_unitario
+FROM 
+  itens_pedido
+INNER JOIN 
+  pedidos ON itens_pedido.id_pedido = pedidos.id_pedido;
+
+
+/*10. Cursos e Matrículas 
+• Crie duas tabelas: cursos e matriculas. A tabela cursos deve ter id_curso e 
+nome_curso. A tabela matriculas deve ter id_matricula, id_curso, 
+id_estudante. Realize uma consulta que mostre todos os cursos e quantos 
+alunos estão matriculados em cada um.*/
+
+-- Tabela de cursos
+CREATE TABLE curso (
+  id_curso INT AUTO_INCREMENT PRIMARY KEY,
+  nome_curso VARCHAR(100)
+);
+
+-- Tabela de matrículas
+CREATE TABLE matricula (
+  id_matricula INT AUTO_INCREMENT PRIMARY KEY,
+  id_curso INT,
+  id_estudante INT,
+  FOREIGN KEY (id_curso) REFERENCES cursos(id_curso)
+);
+
+SELECT 
+  cursos.nome_curso,
+  COUNT(matricula.id_estudante) AS total_matriculados
+FROM 
+  cursos
+LEFT JOIN 
+  matricula ON cursos.id_curso = matricula.id_curso
+GROUP BY 
+  cursos.nome_curso;
+
+/*11. Autores e Livros (Muitos para Muitos) 
+• Crie uma tabela intermediária chamada livros_autores que relaciona livros 
+e autores. A tabela livros deve ter id_livro e titulo. A tabela autores 
+deve ter id_autor e nome_autor. A tabela livros_autores deve ter id_livro 
+e id_autor. Crie uma consulta que mostre todos os livros com seus respectivos 
+autores.*/
+
+-- Tabela de autores
+CREATE TABLE autor (
+  id_autor INT AUTO_INCREMENT PRIMARY KEY,
+  nome_autor VARCHAR(100)
+);
+
+-- Tabela de livros
+CREATE TABLE livro (
+  id_livro INT AUTO_INCREMENT PRIMARY KEY,
+  titulo VARCHAR(150)
+);
+
+-- Tabela intermediária: livros_autores
+CREATE TABLE livros_autores (
+  id_livro INT,
+  id_autor INT,
+  PRIMARY KEY (id_livro, id_autor),
+  FOREIGN KEY (id_livro) REFERENCES livro(id_livro),
+  FOREIGN KEY (id_autor) REFERENCES autor(id_autor)
+);
+
+SELECT 
+  livro.titulo, 
+  autor.nome_autor 
+FROM 
+  livros_autores
+INNER JOIN 
+  livro ON livros_autores.id_livro = livro.id_livro
+INNER JOIN 
+  autor ON livros_autores.id_autor = autor.id_autor;
+
+
+
+
