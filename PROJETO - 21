@@ -1,0 +1,317 @@
+CREATE TABLE pessoas (
+	id INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(30) NOT NULL,
+    nascimento DATE,
+    sexo ENUM('M', 'F'),
+    peso DECIMAL(5,2),
+    altura DECIMAL(3,2),
+    nacionalidade VARCHAR(20) DEFAULT 'Brasil',
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4 
+  COLLATE = utf8mb4_general_ci;
+
+
+
+INSERT INTO pessoas (nome, nascimento, sexo, peso, altura, nacionalidade) VALUES
+('Ana Silva', '1990-05-15', 'F', 60.5, 1.65, 'Brasil'),
+('Carlos Souza', '1985-10-22', 'M', 75.0, 1.80, 'Brasil'),
+('Beatriz Rocha', '2000-03-09', 'F', 55.2, 1.70, 'Argentina'),
+('Daniel Lima', '1992-07-12', 'M', 82.3, 1.75, 'Brasil'),
+('Eduarda Pires', '1998-11-30', 'F', 67.8, 1.68, 'Portugal'),
+('Felipe Almeida', '1989-01-25', 'M', 90.1, 1.85, 'Brasil'),
+('Gustavo Melo', '1995-06-17', 'M', 78.6, 1.79, 'Chile'),
+('Helena Dias', '1993-12-05', 'F', 58.0, 1.64, 'Brasil'),
+('Igor Castro', '2001-08-19', 'M', 74.3, 1.72, 'Brasil'),
+('Juliana Freitas', '1997-04-23', 'F', 62.7, 1.66, 'Uruguai'),
+
+('Kamila Ramos', '1991-09-03', 'F', 64.5, 1.70, 'Brasil'),
+('Lucas Torres', '1996-12-11', 'M', 81.9, 1.78, 'Brasil'),
+('Mariana Costa', '1994-02-28', 'F', 59.3, 1.62, 'México'),
+('Nathan Barbosa', '1988-07-20', 'M', 88.0, 1.83, 'Brasil'),
+('Olivia Martins', '2002-03-10', 'F', 57.0, 1.69, 'Brasil'),
+('Pedro Henrique', '1990-05-18', 'M', 77.7, 1.76, 'Brasil'),
+('Quésia Lopes', '1999-10-25', 'F', 66.4, 1.67, 'Colômbia'),
+('Rafael Monteiro', '1987-11-08', 'M', 92.3, 1.86, 'Brasil'),
+('Sabrina Neves', '2000-06-14', 'F', 61.1, 1.65, 'Paraguai'),
+('Tiago Viana', '1993-03-03', 'M', 85.6, 1.81, 'Brasil'),
+
+('Ursula Teixeira', '1985-12-29', 'F', 63.8, 1.70, 'Brasil'),
+('Vinícius Prado', '1998-09-15', 'M', 80.0, 1.77, 'Brasil'),
+('Wesley Fonseca', '1996-01-07', 'M', 79.2, 1.79, 'Espanha'),
+('Xuxa Andrade', '1991-04-22', 'F', 60.9, 1.63, 'Brasil'),
+('Yasmin Brito', '2003-05-05', 'F', 56.5, 1.60, 'Brasil'),
+('Zeca Lins', '1989-07-30', 'M', 83.3, 1.82, 'Brasil'),
+('Aline Farias', '1995-11-11', 'F', 58.2, 1.66, 'Peru'),
+('Bruno Cardoso', '2001-02-17', 'M', 76.0, 1.74, 'Brasil'),
+('Clara Matos', '1997-09-27', 'F', 65.0, 1.68, 'Brasil'),
+('Diego Nunes', '1992-08-04', 'M', 91.5, 1.85, 'Brasil'),
+
+('Elaine Torres', '1990-03-30', 'F', 63.0, 1.69, 'Brasil'),
+('Fabiano Costa', '1994-06-19', 'M', 84.4, 1.80, 'Argentina'),
+('Graziella Cunha', '2000-01-01', 'F', 59.7, 1.64, 'Brasil'),
+('Hugo Sales', '1993-10-10', 'M', 87.2, 1.83, 'Chile'),
+('Isabel Souza', '1996-12-25', 'F', 62.0, 1.67, 'Brasil'),
+('Jonas Dias', '1988-04-07', 'M', 89.1, 1.84, 'Brasil'),
+('Karen Martins', '1999-01-15', 'F', 61.3, 1.65, 'Brasil'),
+('Leonardo Lima', '1991-07-28', 'M', 78.5, 1.77, 'Uruguai'),
+('Marcela Reis', '1995-05-12', 'F', 60.0, 1.62, 'Brasil'),
+('Nicolas Ferreira', '2002-11-03', 'M', 73.9, 1.73, 'Brasil'),
+
+('Patrícia Rocha', '1993-01-09', 'F', 64.2, 1.70, 'Brasil'),
+('Renan Oliveira', '1997-08-21', 'M', 82.8, 1.79, 'Brasil'),
+('Sandra Gomes', '1994-09-06', 'F', 67.0, 1.68, 'Brasil'),
+('Thiago Braga', '1990-06-16', 'M', 90.5, 1.85, 'Brasil'),
+('Vanessa Mello', '1992-02-13', 'F', 66.7, 1.70, 'Brasil'),
+('William Rocha', '1987-03-19', 'M', 88.9, 1.82, 'Portugal');
+
+-- 1
+CREATE VIEW vw_todas_pessoas AS
+SELECT * FROM pessoas;
+
+-- 2
+CREATE VIEW vw_nome_sexo AS
+SELECT nome, sexo FROM pessoas;
+
+-- 3
+CREATE VIEW vw_mulheres AS
+SELECT nome FROM pessoas WHERE sexo = 'F';
+
+-- 4
+CREATE VIEW vw_homens AS
+SELECT * FROM pessoas WHERE sexo = 'M';
+
+-- 5
+CREATE VIEW vw_peso_maior_80 AS
+SELECT * FROM pessoas WHERE peso > 80;
+
+-- 6
+CREATE VIEW vw_altura_menor_170 AS
+SELECT * FROM pessoas WHERE altura < 1.70;
+
+-- 7
+CREATE VIEW vw_nacionalidade_nao_brasil AS
+SELECT * FROM pessoas WHERE nacionalidade <> 'Brasil';
+
+-- 8
+CREATE VIEW vw_nomes_com_a AS
+SELECT * FROM pessoas WHERE nome LIKE 'A%';
+
+-- 9
+CREATE VIEW vw_nascidos_pos_2000 AS
+SELECT * FROM pessoas WHERE EXTRACT(YEAR FROM data_nascimento) > 2000;
+
+-- 10
+CREATE VIEW vw_peso_entre_60_70 AS
+SELECT * FROM pessoas WHERE peso BETWEEN 60 AND 70;
+
+-- 11
+CREATE VIEW vw_5_mais_altas AS
+SELECT * FROM pessoas ORDER BY altura DESC LIMIT 5;
+
+
+-- 12
+CREATE VIEW vw_5_mais_leves AS
+SELECT * FROM pessoas ORDER BY peso ASC LIMIT 5;
+
+-- 13
+CREATE VIEW vw_ordenado_por_nome AS
+SELECT * FROM pessoas ORDER BY nome ASC;
+
+-- 14
+CREATE VIEW vw_mais_novas AS
+SELECT * FROM pessoas ORDER BY data_nascimento DESC;
+
+-- 15
+CREATE VIEW vw_peso_descendente AS
+SELECT * FROM pessoas ORDER BY peso DESC;
+
+-- 16
+CREATE VIEW vw_10_primeiros AS
+SELECT * FROM pessoas ORDER BY id ASC LIMIT 10;
+
+-- 17
+CREATE VIEW vw_10_ultimos AS
+SELECT * FROM pessoas ORDER BY id DESC LIMIT 10;
+
+-- 18
+CREATE VIEW vw_altura_entre_165_175 AS
+SELECT * FROM pessoas WHERE altura BETWEEN 1.65 AND 1.75;
+
+-- 19
+CREATE VIEW vw_segunda_letra_a AS
+SELECT * FROM pessoas WHERE nome LIKE '_a%';
+
+-- 20
+CREATE VIEW vw_nome_maior_10_caracteres AS
+SELECT * FROM pessoas WHERE LENGTH(nome) > 10;
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+-- 31
+CREATE VIEW vw_peso_maior_85 AS
+SELECT nome, peso FROM pessoas WHERE peso > 85;
+
+-- 32
+CREATE VIEW vw_eh_brasileiro AS
+SELECT nome, nacionalidade,
+       CASE WHEN nacionalidade = 'Brasil' THEN 'Sim' ELSE 'Não' END AS eh_brasileiro
+FROM pessoas;
+
+-- 33
+CREATE VIEW vw_homens_altos AS
+SELECT * FROM pessoas WHERE sexo = 'M' AND altura > 1.80;
+
+-- 34
+CREATE VIEW vw_nascidos_ano_par AS
+SELECT nome, data_nascimento
+FROM pessoas
+WHERE EXTRACT(YEAR FROM data_nascimento) % 2 = 0;
+
+-- 35
+CREATE VIEW vw_nomes_decrescente AS
+SELECT nome FROM pessoas ORDER BY nome DESC;
+
+-- 36
+CREATE VIEW vw_nome_termina_com_a AS
+SELECT * FROM pessoas WHERE nome LIKE '%a';
+
+-- 37
+CREATE VIEW vw_menos_30_anos AS
+SELECT nome,
+       FLOOR(EXTRACT(YEAR FROM AGE(CURRENT_DATE, data_nascimento))) AS idade
+FROM pessoas
+WHERE EXTRACT(YEAR FROM AGE(CURRENT_DATE, data_nascimento)) < 30;
+
+-- 38
+CREATE VIEW vw_altura_exata_170 AS
+SELECT * FROM pessoas WHERE altura = 1.70;
+
+-- 39
+CREATE VIEW vw_nome_ano_nascimento AS
+SELECT nome, EXTRACT(YEAR FROM data_nascimento) AS ano_nascimento
+FROM pessoas;
+
+-- 40
+CREATE VIEW vw_nome_contem_silva AS
+SELECT * FROM pessoas WHERE nome ILIKE '%Silva%';
+
+-- 31
+CREATE VIEW vw_peso_maior_85 AS
+SELECT nome, peso FROM pessoas WHERE peso > 85;
+
+-- 32
+CREATE VIEW vw_eh_brasileiro AS
+SELECT nome, nacionalidade,
+       CASE WHEN nacionalidade = 'Brasil' THEN 'Sim' ELSE 'Não' END AS eh_brasileiro
+FROM pessoas;
+
+-- 33
+CREATE VIEW vw_homens_altos AS
+SELECT * FROM pessoas WHERE sexo = 'M' AND altura > 1.80;
+
+-- 34
+CREATE VIEW vw_nascidos_ano_par AS
+SELECT nome, data_nascimento
+FROM pessoas
+WHERE EXTRACT(YEAR FROM data_nascimento) % 2 = 0;
+
+-- 35
+CREATE VIEW vw_nomes_decrescente AS
+SELECT nome FROM pessoas ORDER BY nome DESC;
+
+-- 36
+CREATE VIEW vw_nome_termina_com_a AS
+SELECT * FROM pessoas WHERE nome LIKE '%a';
+
+-- 37
+CREATE VIEW vw_menos_30_anos AS
+SELECT nome,
+       FLOOR(EXTRACT(YEAR FROM AGE(CURRENT_DATE, data_nascimento))) AS idade
+FROM pessoas
+WHERE EXTRACT(YEAR FROM AGE(CURRENT_DATE, data_nascimento)) < 30;
+
+-- 38
+CREATE VIEW vw_altura_exata_170 AS
+SELECT * FROM pessoas WHERE altura = 1.70;
+
+-- 39
+CREATE VIEW vw_nome_ano_nascimento AS
+SELECT nome, EXTRACT(YEAR FROM data_nascimento) AS ano_nascimento
+FROM pessoas;
+
+-- 40
+CREATE VIEW vw_nome_contem_silva AS
+SELECT * FROM pessoas WHERE nome ILIKE '%Silva%';
+
+
+-- 41
+CREATE VIEW vw_faixa_etaria AS
+SELECT id, nome,
+       CASE
+           WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, data_nascimento)) < 30 THEN 'Jovem'
+           WHEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, data_nascimento)) BETWEEN 30 AND 59 THEN 'Adulto'
+           ELSE 'Idoso'
+       END AS faixa_etaria
+FROM pessoas;
+
+-- 42
+CREATE VIEW vw_nome_tamanho AS
+SELECT nome, LENGTH(nome) AS qtd_letras FROM pessoas;
+
+-- 43
+CREATE VIEW vw_nome_com_duas_letras_e AS
+SELECT * FROM pessoas
+WHERE LENGTH(nome) - LENGTH(REPLACE(LOWER(nome), 'e', '')) >= 2;
+
+-- 44
+CREATE VIEW vw_nascidos_85_95 AS
+SELECT * FROM pessoas
+WHERE EXTRACT(YEAR FROM data_nascimento) BETWEEN 1985 AND 1995;
+
+-- 45
+CREATE VIEW vw_peso_classificacao AS
+SELECT nome, peso,
+       CASE
+           WHEN peso < 60 THEN 'Leve'
+           WHEN peso BETWEEN 60 AND 80 THEN 'Médio'
+           ELSE 'Pesado'
+       END AS peso_classificacao
+FROM pessoas;
+
+-- 46
+CREATE VIEW vw_primeiro_nome AS
+SELECT SPLIT_PART(nome, ' ', 1) AS primeiro_nome FROM pessoas;
+
+-- 47
+CREATE VIEW vw_qtd_por_nacionalidade AS
+SELECT nacionalidade, COUNT(*) AS total
+FROM pessoas
+GROUP BY nacionalidade;
+
+-- 48
+CREATE VIEW vw_media_altura_mulheres AS
+SELECT AVG(altura) AS media_altura
+FROM pessoas
+WHERE sexo = 'F';
+
+-- 49
+CREATE VIEW vw_dia_semana_nascimento AS
+SELECT nome,
+       TO_CHAR(data_nascimento, 'Day') AS dia_semana
+FROM pessoas;
+
+-- 50
+CREATE VIEW vw_total_pessoas AS
+SELECT COUNT(*) AS total_cadastrados FROM pessoas;
+
+
+
+CREATE TABLE pessoa (
+ID int NOT NULL,
+primeironome varchar (255) NOT NULL,
+ultimonome varchar (255),
+idade int,
+CHECK (idade>=18) #Verifica sea idade cadastrada é maior que 18
+);
+
+
