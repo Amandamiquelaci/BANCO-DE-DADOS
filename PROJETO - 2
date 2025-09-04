@@ -1,18 +1,323 @@
+/*1. Crie um banco de dados chamado Livraria. Dentro dele, crie três tabelas: 
+Livros (livro, titulo, preco, autor, editora), Autores (autor, nome, 
+nacionalidade) e Editoras (editora, nome, telefone). */
+
+
+
 create database livraria;
 
-use livraria;
-
+use  livraria;
+#Criando labela de livros
 create table livros(
 livro varchar(40),
  titulo varchar (30),
  preco float, 
- autor char(1),
+ autor varchar(30),
  editora varchar(30)
 
-)
+);
 
 create table autores (
 autor varchar(13),
 nome varchar(30),
 nacionalidade varchar(20)
-)
+);
+
+create table editoras (
+editora varchar(40),
+nome varchar(30),
+telefone char(10)
+);
+
+/*2. Crie um banco de dados chamado PetShop. Crie três tabelas: Animais 
+(animal, nome, especie, idade, cliente), Clientes (cliente, nome, telefone) 
+e Servicos (servico, descricao, preco).*/
+
+create database Animais;
+
+use Animais;
+create table Animais(
+
+animal varchar(30),
+nome varchar(30), 
+especie varchar(20), 
+idade char(10), # ou int  (char e para feminino e masculino 
+cliente varchar(30)
+);
+
+create table Clientes(
+cliente varchar(30),
+nome varchar(30),
+telefone int(10)
+);
+
+create table Serviços (
+servico varchar(30),
+descricao varchar(40),
+ preco float
+ );
+ 
+ /*3-Crie um banco de dados chamado EscolaIdiomas. Crie três tabelas: 
+Alunos (aluno, nome, email), Professores (professor, nome, 
+especialidade) e Cursos (curso, nome, carga_horaria). */
+
+create database Alunos;
+
+use Alunos;
+create table Alunos(
+aluno varchar (30),
+nome varchar (40),
+email varchar (35)
+);
+
+create database Professores;
+
+use professores;
+create table professores (
+professor varchar (40),
+nome varchar (30), 
+especialidade varchar(40)
+);
+
+create database Cursos;
+
+use Cursos;
+create table Cursos (
+curso varchar (40),
+nome varchar (40),
+carga_horaria varchar (80)
+);
+
+/*4. Crie um banco de dados chamado Academia. Crie três tabelas: Alunos 
+(aluno, nome, idade), Planos (plano, descricao, preco) e Instrutores 
+(instrutor, nome, especialidade).*/
+
+create database Alunos;
+
+use Alunos;
+
+
+create table Alunos (
+aluno varchar (10),
+nome varchar (20),
+idade int
+);
+
+create database Planos;
+
+use Planos;
+
+
+create table Planos (
+plano varchar (90),
+descricao  varchar(400),
+preco float
+
+);
+
+create database Instrutores ;
+use Instrutores ;
+create table Instrutores  (
+instrutor varchar (40),
+nome varchar (40),
+especialidade varchar (40)
+);
+
+
+/*5. Crie um banco de dados chamado Hospital. Crie três tabelas: Pacientes 
+(paciente, nome, data_nascimento), Medicos (medico, nome, especialidade) e Consultas (consulta, paciente, medico, data_consulta). */
+create database Pacientes;
+use Pacientes ;
+create table Pacientes  (
+paciente varchar (50),
+nome varchar (50),
+data_nasciment int
+);
+
+create database Medicos;
+use Medicos ;
+create table Medicos  (
+medico varchar (30),
+nome varchar (30),
+especialidade varchar (30)
+);
+
+create database Consultas;
+use Consultas ;
+create table Consultas ( 
+consulta varchar (40),
+paciente varchar (50),
+medico varchar (60),
+data_consulta int
+);
+/*6. Crie um banco de dados chamado Supermercado. Crie três tabelas: 
+Clientes (cliente, nome, telefone), Produtos (produto, nome, preco) e 
+Vendas (venda, cliente, produto, data_venda). */
+
+create database Clientes;
+use Clientes ;
+create table Clientes ( 
+cliente varchar (30),
+nome varchar (30),
+telefone int
+);
+
+create database Produtos;
+use Produtos ;
+create table Produtos ( 
+produto varchar (30),
+nome varchar (30), 
+preco float
+);
+
+create database Vendas;
+use Vendas ;
+create table Vendas ( 
+venda varchar (30),
+cliente varchar (30), 
+produto varchar (30), 
+data_venda int
+);
+
+
+/*7. Crie um banco de dados chamado LojaRoupas. Crie três tabelas: 
+Produtos (produto, nome, preco, quantidade_estoque), Fornecedores 
+(fornecedor, nome, telefone) e Estoque (estoque, produto, quantidade).*/
+
+create database Produtos;
+
+use Produtos ;
+
+create table prod ( 
+produto varchar (50), 
+nome varchar (30), 
+preco float , 
+quantidadeestoque int 
+);
+
+create database Fornecedores;
+
+use Fornecedores ;
+
+create table fornecedores ( 
+fornecedor varchar (50), 
+nome varchar (50), 
+telefone int
+);
+
+create database Estoque;
+
+use Estoque ;
+
+create table Estoque ( 
+estoque int, 
+produto varchar (30), 
+quantidade int
+
+);
+
+/*8. Crie um banco de dados chamado Padaria. Crie três tabelas: Produtos 
+(produto, nome, preco), Funcionarios (funcionario, nome, funcao) e 
+Vendas (venda, produto, funcionario, data_venda).*/
+
+create database prdutos;
+
+use Prdutos ;
+
+create table prdutos ( 
+produto varchar (30), 
+nome varchar (30), 
+preco float
+);
+
+create database Funcionarios ;
+
+use Funcionarios ;
+
+create table Funcionarios ( 
+funcionario varchar (30), 
+nome varchar (30), 
+funcao varchar (30)
+);
+
+
+create database Vendas;
+
+use Vendas ;
+
+create table Vendas ( 
+venda varchar (30), 
+produto varchar (30), 
+funcionario varchar (30), 
+datavenda int
+
+);
+/*9. Crie um banco de dados chamado Farmacia. Crie três tabelas: Produtos 
+(produto, nome, preco), Clientes (cliente, nome, telefone) e Vendas 
+(venda, cliente, produto, data_venda).*/
+
+create database farmacia
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+use farmacia;
+
+create table farmacia ( 
+produto varchar (30), 
+nome varchar(30), 
+preco int
+);
+create database cliente
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+use clientes;
+
+create table cliente ( 
+cliente varchar (30), 
+nome varchar(30), 
+telefone int
+);
+
+create database farmacia
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+use farmacia;
+
+create table vendas ( 
+venda varchar(30), 
+cliente varchar(30), 
+produto varchar(30), 
+datavenda date
+);
+/*10. Crie um banco de dados chamado Biblioteca. Crie três tabelas: Livros 
+(livro, titulo, autor), Autores (autor, nome, nacionalidade) e Emprestimos 
+(emprestimo, livro, usuario, data_emprestimo).*/
+
+create database biblioteca
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+use biblioteca;
+
+create table biblioteca( 
+id INT NOT NULL AUTO_INCREMENT,
+livro varchar (30)NOT NULL,
+titulo varchar (30)NOT NULL,
+autor varchar (30) NOT NULL,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
