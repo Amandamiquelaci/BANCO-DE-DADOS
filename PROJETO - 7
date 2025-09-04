@@ -1,0 +1,179 @@
+/*1. Crie a tabela salas (id, nome, bloco) e adicione a coluna andar. */
+CREATE DATABASE salas
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE salas;
+ #Criando a tabela alunos
+CREATE TABLE salas (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   bloco varchar(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+#deletando>DROP TABLE alunos;
+ALTER TABLE salas
+ADD andar VARCHAR(20);
+
+#adcionando a coluna depois do nome
+alter table pessoas
+add colum profissao varchar (30) after nome;
+#adcionando a coluna na primeira fila 
+alter table pessoas
+add codigo int first;
+
+/*2. Crie a tabela salas (id, nome, bloco, andar) e adicione a coluna tipo. */
+
+ALTER TABLE salas
+ADD andar VARCHAR(20);
+
+alter table salas
+add tipo int first;
+
+/*3. Crie a tabela salas (id, nome, bloco, andar, tipo) e remova a coluna tipo. */
+alter table salas
+    DROP tipo;
+    
+/*4. Crie a tabela livros (id, titulo, autor) e adicione a coluna ano. */
+
+CREATE TABLE livros (
+   id INT NOT NULL AUTO_INCREMENT,
+   titulo varchar(100) NOT NULL,
+   autor varchar(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table livros
+add ano int first;
+
+/*5. Crie a tabela livros (id, titulo, autor, ano) e adicione a coluna editora. */
+
+alter table livros
+add editora int first;
+
+/*6. Crie a tabela livros (id, titulo, autor, ano, editora) e remova a coluna ano.*/
+alter table livros
+    DROP ano;
+    
+/*7. Crie a tabela bibliotecas (id, nome, local) e adicione a coluna responsavel.*/
+
+CREATE TABLE bibliotecas (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   local_ varchar(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table bibliotecas
+add responsavel int first;
+/*8. Crie a tabela bibliotecas (id, nome, local, responsavel) e remova a coluna 
+responsavel.*/
+
+alter table bibliotecas
+    DROP responsavel;
+    
+/*9. Crie a tabela eventos (id, nome, data) e adicione a coluna local. */ 
+   
+CREATE TABLE eventos (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   data_ int,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table eventos
+add local_ int first;
+/*10. Crie a tabela eventos (id, nome, data, local) e remova a coluna local.*/
+
+alter table eventos
+    DROP local_;
+    
+/*11. Crie a tabela usuarios (id, login, senha) e adicione a coluna perfil. */
+   CREATE TABLE usuarios (
+   id INT NOT NULL AUTO_INCREMENT,
+   login varchar(100) NOT NULL,
+   senha int,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci; 
+
+alter table usuarios
+add perfil int first;
+
+/*12. Crie a tabela usuarios (id, login, senha, perfil) e remova a coluna perfil.*/
+
+alter table usuarios
+    DROP perfil;
+/*13. Crie a tabela pedidos (id, cliente_id, data) e adicione a coluna status. */
+    
+    CREATE TABLE pedidos (
+   id INT NOT NULL AUTO_INCREMENT,
+   cliente_id varchar(100) NOT NULL,
+   data_ date,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci; 
+
+alter table pedidos
+add status int first;
+
+/*14. Crie a tabela pedidos (id, cliente_id, data, status) e adicione a coluna 
+valor_total.*/
+alter table pedidos
+add valor_total int first;
+
+/*15. Crie a tabela pedidos (id, cliente_id, data, status, valor_total) e remova a 
+coluna status. */
+alter table pedidos
+    DROP status;
+    
+/*16. Crie a tabela estoque (id, produto_id, quantidade) e adicione a coluna 
+validade. */
+
+CREATE TABLE estoque (
+   id INT NOT NULL AUTO_INCREMENT,
+   produto_id varchar(100) NOT NULL,
+   quantidade int,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci; 
+
+alter table estoque
+add validade int first;
+/*17. Crie a tabela estoque (id, produto_id, quantidade, validade) e remova a 
+coluna validade.*/
+alter table estoque
+    DROP validade;
+/*18. Crie a tabela fornecedores (id, nome, contato) e adicione a coluna cnpj. */    
+CREATE TABLE fornecedores (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   contato int,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci; 
+
+alter table fornecedores
+add cnpj int first;
+/*19. Crie a tabela fornecedores (id, nome, contato, cnpj) e remova a coluna 
+contato. */
+alter table fornecedores
+    DROP contato;
+    
+ /*20. Crie a tabela pagamentos (id, pedido_id, valor) e adicione a coluna 
+data_pagamento.*/   
+CREATE TABLE pagamentos (
+   id INT NOT NULL AUTO_INCREMENT,
+   pedido_id varchar(100) NOT NULL,
+   valor int,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci; 
+
+alter table pagamentos
+add data_pagamento int first;
