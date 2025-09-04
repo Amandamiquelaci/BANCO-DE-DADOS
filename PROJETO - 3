@@ -1,1 +1,178 @@
 
+/*•  Cinema 
+• Diretores: Insira 3 diretores com o nome e nacionalidade, como Christopher 
+Nolan (britânico), Greta Gerwig (americana) e Bong Joon-ho (sul-coreano). 
+• Filmes: Registre 3 filmes com título, gênero, duração e o diretor. Exemplos: 
+"Oppenheimer" (drama, 180 min), "Barbie" (comédia, 120 min) e "Parasita" 
+(suspense, 132 min). 
+• Sessões: Adicione 3 sessões de filmes com horário e sala. Exemplos: 
+"Oppenheimer" na Sala 1 às 19h, "Barbie" na Sala 2 às 20h, e "Parasita" na Sala 
+3 às 21:30h.*/
+
+#criando banco de dados cinema
+create database cinema
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#selecionando banco de dados
+use cinema;
+
+CREATE TABLE Diretores(
+    id int not null auto_increment,
+    nome VARCHAR (100) not null,
+    nacionalidade VARCHAR(50) not null,
+    primary key (id)
+) default charset utf8mb4;
+
+#inserindo os registros na tabela diretores
+
+insert into diretores
+(nome, nacionalidade)
+values ('christopher Nolan', 'Britanico');
+
+#mostrando os registros dos diretores
+select * from diretores
+
+
+#Tabela de filmes
+CREATE TABLE filmes ( 
+    id INT NOT NULL AUTO_INCREMENT,
+    titulo VARCHAR(50) NOT NULL,
+    genero VARCHAR(30) NOT NULL,
+    duracao INT,
+    diretor VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+# Tabela de sessões
+CREATE TABLE sessoes ( 
+    id INT NOT NULL AUTO_INCREMENT,
+    filme VARCHAR(50) NOT NULL,
+    horario VARCHAR(10) NOT NULL,
+    sala VARCHAR(10) NOT NULL,
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+
+
+/*•  Oficina Mecânica 
+• Clientes: Registre 3 clientes com nome e telefone, como Carlos Silva, Juliana 
+Oliveira e Ricardo Souza. 
+• Veículos: Insira 3 veículos para os clientes, como um Fusca 1995 para Carlos, 
+um Civic 2020 para Juliana e um Celta 2010 para Ricardo. 
+• Serviços: Adicione 3 serviços, como troca de óleo para o Fusca, troca de pneus 
+para o Civic e alinhamento para o Celta.*/
+
+#CRIANDO BANCO DE DADOS 
+#criando banco de dados cinema
+create database clientes
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#selecionando banco de dados
+use clientes;
+
+#tabela clientes
+CREATE TABLE clientes ( 
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    telefone VARCHAR(15),
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+INSERT INTO clientes (nome, telefone) VALUES
+('Carlos Silva', '11999998888'),
+('Juliana Oliveira', '11988887777'),
+('Ricardo Souza', '11977776666');
+
+# Tabela de veículos
+CREATE TABLE veiculos ( 
+    id INT NOT NULL AUTO_INCREMENT,
+    modelo VARCHAR(30) NOT NULL,
+    ano INT NOT NULL,
+    cliente VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+#Veículos
+INSERT INTO veiculos (modelo, ano, cliente) VALUES
+('Fusca', 1995, 'Carlos Silva'),
+('Civic', 2020, 'Juliana Oliveira'),
+('Celta', 2010, 'Ricardo Souza');
+
+#Tabela de serviços
+CREATE TABLE servicos ( 
+    id INT NOT NULL AUTO_INCREMENT,
+    servico VARCHAR(50) NOT NULL,
+    veiculo VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+#Serviços
+INSERT INTO servicos (servico, veiculo) VALUES
+('Troca de óleo', 'Fusca 1995'),
+('Troca de pneus', 'Civic 2020'),
+('Alinhamento', 'Celta 2010');
+
+/*•  Restaurante 
+• Pratos: Cadastre 3 pratos, como "Feijoada" (40,00), "Lasanha" (35,00) e 
+"Brigadeiro" (10,00). 
+• Clientes: Insira 3 clientes com nome e telefone, como Ana Costa, Roberto Lima 
+e Marcela Pereira. 
+• Pedidos: Registre 3 pedidos com prato e cliente, como Ana pedindo Feijoada, 
+Roberto Lasanha e Marcela Brigadeiro.*/
+
+
+
+#Criar o banco de dados
+CREATE DATABASE restaurante
+DEFAULT CHARACTER SET utf8mb4
+DEFAULT COLLATE utf8mb4_general_ci;
+
+# Usar o banco
+USE restaurante;
+
+#Criar tabela clientes
+CREATE TABLE clientes (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(30) NOT NULL,
+    telefone VARCHAR(20),
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+INSERT INTO clientes (nome, telefone) VALUES
+('Ana Costa', '99999-1111'),
+('Roberto Lima', '98888-2222'),
+('Marcela Pereira', '97777-3333');
+
+#Criar tabela pratos
+CREATE TABLE pratos (
+    id INT NOT NULL AUTO_INCREMENT,
+    prato VARCHAR(30) NOT NULL,
+    preco DECIMAL(10,2),
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+INSERT INTO pratos (prato, preco) VALUES
+('Feijoada', 40.00),
+('Lasanha', 35.00),
+('Brigadeiro', 10.00);
+
+
+#Criar tabela pedidos
+CREATE TABLE pedidos (
+    id INT NOT NULL AUTO_INCREMENT,
+    cliente VARCHAR(30) NOT NULL,
+    prato VARCHAR(30) NOT NULL,
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+INSERT INTO pedidos (cliente, prato) VALUES
+('Ana Costa', 'Feijoada'),
+('Roberto Lima', 'Lasanha'),
+('Marcela Pereira', 'Brigadeiro');
+
+
