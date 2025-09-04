@@ -1,0 +1,113 @@
+/*1. Criar Tabela de Pessoas 
+o Crie uma tabela chamada pessoas com os seguintes campos: 
+▪ id (INT, auto-incremento, chave primária) 
+▪ nome (VARCHAR de 50 caracteres) 
+▪ idade (INT) 
+▪ email (VARCHAR de 100 caracteres) 
+▪ profissao (VARCHAR de 30 caracteres)*/
+
+CREATE DATABASE pessoas
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE pessoas;
+
+CREATE TABLE pessoas (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(50) NOT NULL,
+   idade tinyint,
+   email varchar(100) NOT NULL,
+   profissao varchar(30) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+#mudar o tipo do campo 
+alter table pessoas
+modify column nome varchar(70);
+
+/*2. Adicionar Coluna para Data de Nascimento 
+o Após a criação da tabela pessoas, adicione uma nova coluna 
+chamada data_nascimento (DATE) na tabela. */
+#adcionando a coluna 
+alter table pessoas
+add data_pagamento int first;
+
+/*3. Modificar o Tamanho do Campo Nome 
+o Modifique a tabela pessoas para que o campo nome tenha 100 
+caracteres ao invés de 50.*/
+alter table pessoas
+modify column nome varchar(50);
+
+/*4. Alterar Tipo do Campo de Idade 
+o Altere o tipo da coluna idade para SMALLINT em vez de INT. */
+
+alter table pessoas
+modify column idade smallint;
+
+/*5. Remover Coluna de Email 
+o Remova a coluna email da tabela pessoas.*/
+#REMOVENDO
+ALTER TABLE pessoas
+DROP COLUMN email;
+
+/*6. Adicionar Novo Campo de Endereço 
+o Adicione uma coluna chamada endereco (VARCHAR de 150 
+caracteres) à tabela pessoas. */
+
+#adcionando a coluna 
+alter table pessoas
+add endereco varchar(150);
+
+/*7. Alterar a Ordem das Colunas 
+o Altere a posição da coluna profissao para que ela fique depois da 
+coluna nome.*/
+
+ALTER TABLE pessoas
+MODIFY COLUMN profissao VARCHAR(255) AFTER nome;
+
+
+/*8. Adicionar uma Coluna de Telefone 
+o Adicione a coluna telefone (VARCHAR de 20 caracteres) à tabela 
+pessoas.*/
+ALTER TABLE pessoas
+ADD COLUMN telefone VARCHAR(20);
+
+/*9. Mudar o Nome da Tabela 
+o Renomeie a tabela pessoas para clientes. */
+
+#mudar o nome da tabela
+alter table pessoas
+rename to clientes;
+
+
+/*10. Alterar a Coluna de Endereço para VARCHAR(255) 
+o Modifique a coluna endereco para aceitar até 255 caracteres.*/
+
+ALTER TABLE pessoas
+add column endereco VARCHAR(255);
+
+/*11. Adicionar um Campo de Salário 
+o Adicione uma coluna chamada salario (DECIMAL de 10,2) à 
+tabela clientes.*/
+
+ALTER TABLE clientes
+ADD salario DECIMAL(10,2);
+
+/*12. Modificar a Coluna de Profissão para Ter um Tamanho Máximo de 
+50 Caracteres 
+o Modifique a coluna profissao da tabela clientes para que tenha 
+um tamanho de 50 caracteres, ao invés de 30.*/
+
+ALTER TABLE clientes
+
+
+MODIFY profissao VARCHAR(50);
+
+
+
+
+
+
+
