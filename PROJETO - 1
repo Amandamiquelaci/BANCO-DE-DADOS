@@ -10,3 +10,4 @@ peso float,
 altura float,
 nacionalidade varchar (20)
 );
+
