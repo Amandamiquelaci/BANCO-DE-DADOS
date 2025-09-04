@@ -1,0 +1,339 @@
+/*Banco de dados: universidade 
+Tabelas e Descrição: 
+1. estudantes 
+Tabela responsável por armazenar os dados pessoais dos estudantes, 
+incluindo: 
+• id: Identificador único do estudante (chave primária). 
+• nome: Nome completo do estudante. 
+• data_nascimento: Data de nascimento do estudante. 
+• genero: Gênero do estudante (M ou F). 
+• peso: Peso do estudante. 
+• altura: Altura do estudante. 
+• pais_origem: País de origem do estudante (padrão: 'Brasil').*/
+
+
+#criando banco de dados universidade
+create database universidade
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#selecionando banco de dados
+use universidade;
+#inserindo os registros na tabela diretores
+
+
+# Criando tabela estudantes
+CREATE TABLE estudantes (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    nome VARCHAR(100) NOT NULL,        
+    data_nascimento DATE NOT NULL,     
+    genero CHAR(1) CHECK (genero IN ('M', 'F')), 
+    peso DECIMAL(5,2),                 
+    altura DECIMAL(4,2),               
+    pais_origem VARCHAR(50) DEFAULT 'Brasil' 
+) DEFAULT CHARSET=utf8mb4;
+
+/*2. programas 
+Tabela para armazenar as informações sobre os programas acadêmicos 
+oferecidos, incluindo: 
+• id: Identificador único do programa (chave primária). 
+• titulo: Título do programa (único). 
+• descricao: Descrição do programa. 
+• duracao: Duração total do programa (em anos). 
+• num_aulas: Número total de aulas no programa. 
+• ano_oferta: Ano em que o programa está sendo oferecido (padrão: 
+2025).*/
+
+
+# Criando tabela programas
+
+CREATE TABLE programas (
+    id INT AUTO_INCREMENT PRIMARY KEY,           
+    titulo VARCHAR(100) UNIQUE NOT NULL,        
+    descricao TEXT,                             
+    duracao INT CHECK (duracao > 0),             
+    num_aulas INT CHECK (num_aulas >= 0),       
+    ano_oferta INT DEFAULT 2025                  
+) DEFAULT CHARSET=utf8mb4;
+
+/*3. inscricoes 
+Tabela que registra a inscrição dos estudantes nos programas, incluindo: 
+• id: Identificador único da inscrição (chave primária). 
+• id_estudante: Identificador do estudante inscrito. 
+• id_programa: Identificador do programa no qual o estudante está inscrito. 
+• data_inscricao: Data em que o estudante foi inscrito no programa. */
+
+
+# Criando tabela inscricoes
+
+CREATE TABLE inscricoes (
+    id INT AUTO_INCREMENT PRIMARY KEY,     
+    id_estudante INT NOT NULL,             
+    id_programa INT NOT NULL,              
+    data_inscricao DATE NOT NULL           
+) DEFAULT CHARSET=utf8mb4;
+
+
+
+
+/*1. Comando INSERT INTO 
+Este comando é usado para inserir novos registros nas tabelas do banco de 
+dados. 
+• Na tabela estudantes, você usaria o INSERT INTO para adicionar novos 
+estudantes ao sistema, fornecendo dados como nome, data de 
+nascimento, gênero, peso, altura e país de origem. O banco geraria 
+automaticamente o ID do estudante. 
+• Na tabela programas, o comando INSERT INTO é utilizado para 
+adicionar novos programas acadêmicos. Cada programa terá seu próprio 
+título, descrição, duração, número de aulas e ano de oferecimento. 
+• Na tabela inscricoes, o INSERT INTO é usado para registrar a inscrição 
+de um estudante em um programa acadêmico, fornecendo o ID do 
+estudante, o ID do programa e a data da inscrição. O ID da inscrição é 
+gerado automaticamente.*/
+
+#Tabela estudantes
+INSERT INTO estudantes (nome, data_nascimento, genero, peso, altura, pais_origem)
+VALUES ('Ana Souza', '2002-03-15', 'F', 58.5, 1.65, 'Brasil');
+
+INSERT INTO estudantes (nome, data_nascimento, genero, peso, altura, pais_origem)
+VALUES ('Carlos Mendes', '2001-07-22', 'M', 72.0, 1.78, 'Brasil');
+
+INSERT INTO estudantes (nome, data_nascimento, genero, peso, altura, pais_origem)
+VALUES ('Beatriz Lima', '2003-11-05', 'F', 64.3, 1.70, 'Argentina');
+
+INSERT INTO estudantes (nome, data_nascimento, genero, peso, altura, pais_origem)
+VALUES ('João Pereira', '2000-01-30', 'M', 80.2, 1.82, 'Brasil');
+
+INSERT INTO estudantes (nome, data_nascimento, genero, peso, altura, pais_origem)
+VALUES ('Luciana Torres', '2002-06-18', 'F', 55.0, 1.60, 'Chile');
+
+#Tabela Programa
+
+INSERT INTO programas (titulo, descricao, duracao, num_aulas, ano_oferta)
+VALUES ('Engenharia de Software', 'Curso voltado ao desenvolvimento de sistemas.', 4, 40, 2025);
+
+INSERT INTO programas (titulo, descricao, duracao, num_aulas, ano_oferta)
+VALUES ('Administração', 'Formação em gestão empresarial.', 4, 35, 2025);
+
+INSERT INTO programas (titulo, descricao, duracao, num_aulas, ano_oferta)
+VALUES ('Design Gráfico', 'Curso sobre criação visual e comunicação.', 3, 30, 2025);
+
+INSERT INTO programas (titulo, descricao, duracao, num_aulas, ano_oferta)
+VALUES ('Psicologia', 'Estudo do comportamento humano.', 5, 45, 2025);
+
+INSERT INTO programas (titulo, descricao, duracao, num_aulas, ano_oferta)
+VALUES ('Ciência de Dados', 'Curso sobre análise e interpretação de dados.', 4, 50, 2025);
+
+#Tabela Inscrições
+
+INSERT INTO inscricoes (id_estudante, id_programa, data_inscricao)
+VALUES (1, 1, '2025-02-10');
+
+INSERT INTO inscricoes (id_estudante, id_programa, data_inscricao)
+VALUES (2, 3, '2025-03-05');
+
+INSERT INTO inscricoes (id_estudante, id_programa, data_inscricao)
+VALUES (3, 2, '2025-04-12');
+
+INSERT INTO inscricoes (id_estudante, id_programa, data_inscricao)
+VALUES (4, 5, '2025-05-20');
+
+INSERT INTO inscricoes (id_estudante, id_programa, data_inscricao)
+VALUES (5, 4, '2025-06-01');
+
+
+/*2. Comando UPDATE 
+O UPDATE é usado para atualizar os dados de registros existentes nas tabelas. 
+• Na tabela estudantes, você poderia usar o UPDATE para alterar as 
+informações de um estudante, como peso, altura, profissão ou país de 
+origem. Por exemplo, se o estudante mudar de país, você usaria o 
+UPDATE para alterar o campo pais_origem. 
+• Na tabela programas, o UPDATE poderia ser utilizado para alterar o 
+título do programa, a duração ou o número de aulas. Isso seria útil se o 
+programa sofrer alguma alteração, como uma mudança no título ou uma 
+atualização na duração. 
+• Na tabela inscricoes, você pode usar o UPDATE para alterar a data da 
+inscrição ou fazer qualquer outra alteração relacionada à inscrição de um 
+estudante em um programa.*/
+
+#Tabela estudantes
+# Atualizar o país de origem da estudante Ana Souza
+UPDATE estudantes SET pais_origem = 'Portugal' WHERE nome = 'Ana Souza';
+
+
+#Atualizar o peso de Carlos Mendes
+UPDATE estudantes SET peso = 75.0 WHERE nome = 'Carlos Mendes';  
+
+# Atualizar a altura de Beatriz Lima
+UPDATE estudantes SET altura = 1.72 WHERE nome = 'Beatriz Lima';
+
+# Atualizar o país de origem de Luciana Torres
+UPDATE estudantes SET pais_origem = 'Uruguai' WHERE nome = 'Luciana Torres';
+
+# peso e altura de João Pereira
+UPDATE estudantes SET peso = 78.5, altura = 1.80 WHERE nome = 'João Pereira';
+
+
+#Tabela programas
+
+#'Administração'
+UPDATE programas SET titulo = 'Gestão Empresarial' WHERE titulo = 'Administração';
+
+#'Design Gráfico'
+UPDATE programas SET duracao = 4 WHERE titulo = 'Design Gráfico';
+
+#'Psicologia'
+UPDATE programas SET num_aulas = 50 WHERE titulo = 'Psicologia';
+
+#'Ciência de Dados'
+UPDATE programas SET titulo = 'Análise de Dados', num_aulas = 55 WHERE titulo = 'Ciência de Dados';
+
+# 'Engenharia de Software'
+UPDATE programas SET duracao = 5 WHERE titulo = 'Engenharia de Software';
+
+
+
+#Tabela Inscrições 
+
+# Atualizar a data de inscrição de Ana Souza (id_estudante = 1)
+UPDATE inscricoes SET data_inscricao = '2025-02-15' WHERE id_estudante = 1 AND id_programa = 1;
+
+# Atualizar a data de inscrição de Carlos Mendes (id_estudante = 2)
+UPDATE inscricoes SET data_inscricao = '2025-03-10' WHERE id_estudante = 2 AND id_programa = 3;
+
+# Atualizar o programa da inscrição de Beatriz Lima (id_estudante = 3)
+UPDATE inscricoes SET id_programa = 5 WHERE id_estudante = 3;
+
+# Atualizar o estudante da inscrição no programa 'Ciência de Dados' (id_programa = 5)
+UPDATE inscricoes SET id_estudante = 1 WHERE id_programa = 5;
+
+# Atualizar a data de inscrição de Luciana Torres (id_estudante = 5)
+UPDATE inscricoes SET data_inscricao = '2025-06-10' WHERE id_estudante = 5 AND id_programa = 4;
+
+
+
+/*3. Comando SELECT 
+O SELECT é utilizado para consultar os dados das tabelas. 
+• Na tabela estudantes, o SELECT permite visualizar os dados de todos 
+os estudantes ou filtrar os estudantes por critérios como nome, gênero ou 
+país de origem. Por exemplo, um SELECT simples poderia mostrar todos 
+os estudantes da universidade, e um SELECT com WHERE poderia listar 
+os estudantes que nasceram após 2000 ou que são de determinado país. 
+• Na tabela programas, o SELECT permite consultar quais programas 
+acadêmicos estão disponíveis. Você poderia usá-lo para listar todos os 
+programas oferecidos no ano de 2025 ou para mostrar os programas com 
+uma duração superior a um determinado valor. 
+• Na tabela inscricoes, um SELECT pode ser utilizado para ver quais 
+estudantes estão inscritos em quais programas, mostrando as relações 
+entre as tabelas estudantes e programas.*/
+
+#Tabela estudantes
+
+SELECT * FROM estudantes;
+
+SELECT nome, pais_origem FROM estudantes WHERE pais_origem = 'Brasil';
+
+SELECT nome, genero FROM estudantes WHERE genero = 'F';
+
+SELECT nome, data_nascimento FROM estudantes WHERE data_nascimento > '2000-01-01';
+
+SELECT nome, altura FROM estudantes WHERE altura > 1.70;
+
+
+#Tabela programas
+
+SELECT * FROM programas;
+
+SELECT titulo, ano_oferta FROM programas WHERE ano_oferta = 2025;
+
+SELECT titulo, duracao FROM programas WHERE duracao > 4;
+
+SELECT titulo, num_aulas FROM programas WHERE num_aulas > 40;
+
+SELECT titulo, descricao FROM programas;
+
+#Tabela inscrições
+
+
+SELECT * FROM inscricoes;
+
+
+SELECT e.nome AS estudante, p.titulo AS programa, i.data_inscricao
+FROM inscricoes i
+JOIN estudantes e ON i.id_estudante = e.id
+JOIN programas p ON i.id_programa = p.id;
+
+
+SELECT * FROM inscricoes WHERE data_inscricao > '2025-04-01';
+
+
+SELECT e.nome, e.pais_origem, p.titulo
+FROM inscricoes i
+JOIN estudantes e ON i.id_estudante = e.id
+JOIN programas p ON i.id_programa = p.id
+WHERE e.pais_origem = 'Chile';
+
+
+SELECT p.titulo, COUNT(*) AS total_inscritos
+FROM inscricoes i
+JOIN programas p ON i.id_programa = p.id
+GROUP BY p.titulo
+HAVING COUNT(*) > 1;
+
+
+/*4. Comando DELETE 
+• Na tabela estudantes, o DELETE é utilizado para remover um estudante 
+do sistema. Para isso, é necessário identificar o estudante que será 
+excluído, geralmente usando o ID do estudante. Uma vez executado o 
+comando, o estudante será permanentemente removido da base de 
+dados. 
+• Na tabela programas, o DELETE é usado para excluir um programa 
+acadêmico. A exclusão deve ser feita com base no ID do programa. Caso 
+um programa seja deletado, ele será removido da base de dados, o que 
+pode afetar as inscrições associadas a ele. 
+• Na tabela inscricoes, o DELETE serve para remover a inscrição de um 
+estudante em um programa. Para isso, é necessário identificar a inscrição 
+pelo ID da inscrição ou pelos IDs de estudante e programa. A exclusão 
+remove o vínculo entre o estudante e o programa.*/
+
+#Tabela Estudantes
+
+DELETE FROM estudantes WHERE id = 4;
+
+DELETE FROM estudantes WHERE id = 3;
+DELETE FROM estudantes WHERE id = 2;
+DELETE FROM estudantes WHERE id = 1;
+DELETE FROM estudantes WHERE id = 6;
+
+
+
+#Tabela programas
+
+DELETE FROM programas WHERE id = 3;
+
+DELETE FROM programas WHERE titulo = 'Administração';
+
+DELETE FROM programas WHERE num_aulas < 35;
+
+DELETE FROM programas WHERE titulo = 'Psicologia';
+
+DELETE FROM programas WHERE id = 2;
+
+
+
+
+#Tabela Inscrições
+
+
+DELETE FROM inscricoes WHERE id = 2;
+
+DELETE FROM inscricoes WHERE id = 5;
+
+DELETE FROM inscricoes WHERE id = 1;
+
+DELETE FROM inscricoes WHERE id = 3;
+
+DELETE FROM inscricoes WHERE id = 4;
+
+
+
