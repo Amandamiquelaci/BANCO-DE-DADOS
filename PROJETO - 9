@@ -1,0 +1,203 @@
+/*Exercício 1 
+Tabela: pessoas 
+Tarefa: Renomeie a tabela pessoas para clientes. */
+
+CREATE DATABASE pessoas
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE pessoas;
+
+CREATE TABLE pessoas (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   profissao varchar(100) NOT NULL,
+   idade tinyint,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table pessoas
+rename to cadastro;
+
+/*Exercício 2 
+Tabela: produtos 
+Tarefa: Renomeie a tabela produtos para itens.*/
+
+CREATE TABLE produtos (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome_produto varchar(100) NOT NULL,
+   preco float,
+   telefone int,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+alter table produtos
+rename to itens;
+
+/*Exercício 3 
+Tabela: alunos 
+Tarefa: Renomeie a tabela alunos para estudantes.*/
+
+alter table alunos
+rename to estudantes;
+
+/*Exercício 4 
+Tabela: funcionarios 
+Tarefa: Renomeie a tabela funcionarios para colaboradores. */
+
+alter table funcionarios
+rename to colaboradores;
+
+/*Exercício 5 
+Tabela: vendas 
+Tarefa: Renomeie a tabela vendas para transacoes.*/
+
+alter table vendas
+rename to transacoes;
+
+/*Exercício 6 
+Tabela: livros 
+Tarefa: Renomeie a tabela livros para obras.*/
+
+alter table livros
+rename to obras;
+
+/*Exercício 7 
+Tabela: usuarios 
+Tarefa: Renomeie a tabela usuarios para clientes_usuarios.*/
+
+alter table usuarios
+rename to clientes_usuarios;
+
+/*Exercício 8 
+Tabela: pacientes 
+Tarefa: Renomeie a tabela pacientes para usuarios_saude.*/
+
+alter table pacientes 
+rename to usuarios_saude;
+
+/*Exercício 9 
+Tabela: carros 
+Tarefa: Renomeie a tabela carros para veiculos. */
+
+alter table carros
+rename to veiculos;
+/*Exercício 10 
+Tabela: enderecos 
+Tarefa: Renomeie a tabela enderecos para localizacoes. */
+
+alter table enderecos
+rename to localizacoes;
+
+/*Exercício 11 
+Tabela: pedidos 
+Tarefa: Renomeie a tabela pedidos para ordens_de_servico.*/
+
+alter table pedidos
+rename to ordens_de_servico;
+
+/*Exercício 12 
+Tabela: notas 
+Tarefa: Renomeie a tabela notas para avaliacoes.*/
+
+alter table notas
+rename to avaliacoes;
+
+/*Exercício 13 
+Tabela: turmas 
+Tarefa: Renomeie a tabela turmas para grupos.*/
+
+
+alter table turmas
+rename to grupos;
+
+
+/*Exercício 14 
+Tabela: fornecedores 
+Tarefa: Renomeie a tabela fornecedores para parceiros_comerciais.*/
+
+alter table fornecedores 
+rename to parceiros_comerciais;
+
+/*Exercício 15 
+Tabela: pagamentos 
+Tarefa: Renomeie a tabela pagamentos para transacoes_financeiras. */
+
+alter table pagamentos  
+rename to transacoes_financeiras;
+
+/*Exercício 16 
+Tabela: avaliacoes 
+Tarefa: Renomeie a tabela avaliacoes para feedbacks. */
+
+alter table avaliacoes  
+rename to feedbacks;
+
+/*Exercício 17 
+Tabela: eventos 
+Tarefa: Renomeie a tabela eventos para atividades.*/
+
+alter table eventos 
+rename to atividades;
+
+/*Exercício 18 
+Tabela: empresas 
+Tarefa: Renomeie a tabela empresas para organizacoes. */
+
+alter table empresas 
+rename to organizacoes;
+
+/*Exercício 19 
+Tabela: disciplinas 
+Tarefa: Renomeie a tabela disciplinas para materias.*/
+
+alter table disciplinas  
+rename to materias;
+
+/*Exercício 20 
+Tabela: chamados 
+Tarefa: Renomeie a tabela chamados para tickets_de_suporte. */
+
+alter table chamados 
+rename to tickets_de_suporte;
+
+
+/*Exercício 21 
+Tabela: mensagens 
+Tarefa: Renomeie a tabela mensagens para comunicados. 
+*/
+alter table mensagens  
+rename to comunicados;
+
+/*Exercício 22 
+Tabela: tarefas 
+Tarefa: Renomeie a tabela tarefas para atividades_trabalho. */
+
+alter table tarefas 
+rename to atividades_trabalho;
+
+/*Exercício 23 
+Tabela: reunioes 
+Tarefa: Renomeie a tabela reunioes para encontros_equipe.*/
+
+alter table reunioes 
+rename to encontros_equipe;
+
+/*Exercício 24 
+Tabela: cadastros 
+Tarefa: Renomeie a tabela cadastros para usuarios_cadastrados. */
+
+alter table cadastros 
+rename to usuarios_cadastrados;
+
+/*Exercício 25 
+Tabela: historico 
+Tarefa: Renomeie a tabela historico para registro_atividades. */
+
+alter table historico 
+rename to registro_atividades;
+
+
