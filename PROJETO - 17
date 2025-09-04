@@ -1,0 +1,73 @@
+CREATE DATABASE clientes
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE clientes ;
+
+/*CREATE TABLE clientes ( 
+id INT PRIMARY KEY AUTO_INCREMENT, 
+nome VARCHAR(100), 
+idade INT, 
+cidade VARCHAR(100), 
+estado VARCHAR(2) 
+); */
+
+
+CREATE TABLE clientes (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(100),
+  idade INT,
+  cidade VARCHAR(100),
+  estado VARCHAR(2)
+);
+#inserindo dados
+INSERT INTO clientes (nome, idade, cidade, estado) VALUES
+('Maria', 22, 'Belo Horizonte', 'MG'),
+('João', 45, 'São Paulo', 'SP'),
+('Ana', 17, 'Campinas', 'SP'),
+('Pedro', 25, 'Natal', 'RN'),
+('Lucas', 28, 'Salvador', 'BA'),
+('Carla', 33, 'Belém', 'PA'),
+('Fernanda', 29, 'Fortaleza', 'CE'),
+('Paulo', 33, 'Porto Alegre', 'RS'),
+('Marcos', 60, 'Curitiba', 'PR'),
+('Luciana', 40, 'Manaus', 'AM'),
+('Rodrigo', 19, 'Uberlândia', 'MG'),
+('Camila', 35, 'Campinas', 'SP'),
+('Gustavo', 50, 'João Pessoa', 'PB'),
+('Aline', 21, 'Maceió', 'AL'),
+('Thiago', 38, 'Salvador', 'BA'),
+('Juliana', 24, 'Recife', 'PE'),
+('Renata', 27, 'São Paulo', 'SP'),
+('Sérgio', 42, 'Fortaleza', 'CE'),
+('Elaine', 60, 'Porto Alegre', 'RS'),
+('Roberta', 20, 'João Pessoa', 'PB'),
+('Igor', 18, 'Belo Horizonte', 'MG'),
+('Vanessa', 26, 'Campinas', 'SP'),
+('Fábio', 45, 'Curitiba', 'PR'),
+('Simone', 25, 'Salvador', 'BA'),
+('Douglas', 39, 'Maceió', 'AL');
+
+#Mostrando todos os registros
+select * from clientes;
+
+#Mostrando dados que terminam com a letra 
+SELECT * FROM clientes
+	WHERE cidade LIKE '%a';
+#Mostrando dados que comecem com a letra a 
+SELECT * FROM clientes
+WHERE nome LIKE 'a%';
+#Mostrando dados que tenham a letra a em qualquer posição 
+select * from clientes
+where estado like '%a%';
+
+#Mostrando os dados que tenham a letra o na segunda  posição
+select * from clientes
+where cidade like '_o';
+
+select * from clientes
+where titulo like 'a%o';
+
+select * from clientes
+where estado like 'a%';
