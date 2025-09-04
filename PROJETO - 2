@@ -307,6 +307,422 @@ PRIMARY KEY (id)
 )DEFAULT CHARSET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
+create table autores( 
+id INT NOT NULL AUTO_INCREMENT,
+autor varchar (30)NOT NULL,
+nome varchar (30)NOT NULL,
+nacionalidade varchar (30) NOT NULL,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table emprestimos( 
+id INT NOT NULL AUTO_INCREMENT,
+emprestimo varchar (30)NOT NULL,
+livro varchar (30)NOT NULL,
+usuario varchar (30) NOT NULL,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+/*11. Crie um banco de dados chamado Universidade. Crie três tabelas: Cursos 
+(curso, nome, carga_horaria), Alunos (aluno, nome, email) e Matriculas 
+(matricula, aluno, curso, data_matricula).*/
+
+create database universidade
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+use universidade;
+
+create table universidade ( 
+id INT NOT NULL AUTO_INCREMENT,
+curso varchar (30)NOT NULL,
+nome varchar (30)NOT NULL,
+cargahoraria int ,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table aluno( 
+id INT NOT NULL AUTO_INCREMENT,
+aluno varchar (30)NOT NULL,
+nome varchar (30)NOT NULL,
+email varchar (30) NOT NULL,
+#data
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table matriculas( 
+id INT NOT NULL AUTO_INCREMENT,
+matricula varchar (30)NOT NULL,
+aluno varchar (30)NOT NULL,
+curso varchar (30) NOT NULL,
+#data
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+
+/*12. Crie um banco de dados chamado ClinicaMedica. Crie três tabelas: 
+Pacientes (paciente, nome, telefone), Medicos (medico, nome, 
+especialidade) e Consultas (consulta, paciente, medico, data_consulta). */
+
+create database clinicamedica
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+use clinicamedica;
+
+create table pacientes ( 
+id INT NOT NULL AUTO_INCREMENT,
+paciente varchar (30)NOT NULL,
+nome varchar (30)NOT NULL,
+telefone int ,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table medicos ( 
+id INT NOT NULL AUTO_INCREMENT,
+medico varchar (30)NOT NULL,
+nome varchar (30)NOT NULL,
+#especialidade (30) NOT NULL,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table consultas ( 
+id INT NOT NULL AUTO_INCREMENT,
+consulta varchar (30)NOT NULL,
+paciente varchar (30)NOT NULL,
+medico varchar (30)NOT NULL,
+data int ,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+
+
+/*13. Crie um banco de dados chamado SalaoBeleza. Crie três tabelas: 
+Clientes (cliente, nome, telefone), Servicos (servico, descricao, preco) e 
+Agendamentos (agendamento, cliente, servico, data_agendamento).*/
+
+
+create database salaobeleza
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+use salaobeleza;
+
+create table clientes ( 
+id INT NOT NULL AUTO_INCREMENT,
+cliente varchar (30)NOT NULL,
+nome varchar (30)NOT NULL,
+#telefone int,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table servicos ( 
+id INT NOT NULL AUTO_INCREMENT,
+servico varchar (30)NOT NULL,
+descricao varchar (30)NOT NULL,
+preco int, 
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table agendamentos ( 
+id INT NOT NULL AUTO_INCREMENT,
+agendamento varchar (30)NOT NULL,
+cliente varchar (30)NOT NULL,
+servico varchar (30)NOT NULL,
+data int,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+/*14. Crie um banco de dados chamado LocadoraCarros. Crie três tabelas: 
+Veiculos (veiculo, modelo, placa), Clientes (cliente, nome, telefone) e 
+Reservas (reserva, cliente, veiculo, data_reserva).*/
+
+create database locadoracarros
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+use locadoracarros;
+
+create table locadoracarros ( 
+id INT NOT NULL AUTO_INCREMENT,
+veiculo varchar (30)NOT NULL,
+modelo varchar (30)NOT NULL,
+placa int,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table clientes ( 
+id INT NOT NULL AUTO_INCREMENT,
+cliente varchar (30)NOT NULL,
+nome varchar (30)NOT NULL,
+telefone int,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table reservas ( 
+id INT NOT NULL AUTO_INCREMENT,
+reserva varchar (30)NOT NULL,
+cliente varchar (30)NOT NULL,
+veiculo varchar (30)NOT NULL,
+data int,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+
+/*15. Crie um banco de dados chamado LocadoraFilmes. Crie três tabelas: 
+Filmes (filme, titulo, genero), Clientes (cliente, nome, telefone) e Locacoes 
+(locacao, cliente, filme, data_locacao).*/
+
+create database locadorafilmes
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+use locadorafilmes;
+
+create table filmes ( 
+id INT NOT NULL AUTO_INCREMENT,
+filme varchar (30)NOT NULL,
+titulo varchar (30)NOT NULL,
+genero enum('M', 'F'),
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table cliente ( 
+id INT NOT NULL AUTO_INCREMENT,
+cliente varchar (30)NOT NULL,
+nome varchar (30)NOT NULL,
+telefone int,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table locacoes ( 
+id INT NOT NULL AUTO_INCREMENT,
+locacao varchar (30)NOT NULL,
+cliente varchar (30)NOT NULL,
+filme varchar (30)NOT NULL,
+data int,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+/*16. Crie um banco de dados chamado OficinaMecanica. Crie três tabelas: 
+Clientes (cliente, nome, telefone), Veiculos (veiculo, modelo, placa, 
+cliente) e Servicos (servico, descricao, preco).*/
+
+create database oficinaMecanica
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+use oficinaMecanica;
+
+create table clientes ( 
+id INT NOT NULL AUTO_INCREMENT,
+cliente varchar (30)NOT NULL,
+nome varchar (30)NOT NULL,
+telefone int,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table veiculos ( 
+id INT NOT NULL AUTO_INCREMENT,
+veiculo varchar (30)NOT NULL,
+modelo varchar (30)NOT NULL,
+placa int,
+cliente varchar (30)NOT NULL,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table servicos ( 
+id INT NOT NULL AUTO_INCREMENT,
+servico varchar (30)NOT NULL,
+descricao varchar (30)NOT NULL,
+preco decimal,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+/*17. Crie um banco de dados chamado Hotel. Crie três tabelas: Hospedes 
+(hospede, nome, telefone), Quartos (quarto, numero, tipo) e Reservas 
+(reserva, hospede, quarto, data_entrada, data_saida).*/
+
+create database hotel
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+use hotel;
+
+create table hospedes ( 
+id INT NOT NULL AUTO_INCREMENT,
+hospede varchar (30)NOT NULL,
+nome varchar (30)NOT NULL,
+telefone int,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table quarto( 
+id INT NOT NULL AUTO_INCREMENT,
+quarto varchar (30)NOT NULL,
+tipo varchar (30)NOT NULL,
+numero int,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table reservas ( 
+id INT NOT NULL AUTO_INCREMENT,
+reserva varchar (30)NOT NULL,
+hospede varchar (30)NOT NULL,
+quarto int,
+data_entrada decimal,
+data_saida decimal,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+/*18. Crie um banco de dados chamado Restaurante. Crie três tabelas: Clientes 
+(cliente, nome, telefone), Pratos (prato, nome, preco) e Pedidos (pedido, 
+cliente, prato, data_pedido).*/
+
+create database restaurante
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+use restaurante;
+
+create table clientes ( 
+id INT NOT NULL AUTO_INCREMENT,
+cliente varchar (30)NOT NULL,
+nome varchar (30)NOT NULL,
+telefone int,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table pratos ( 
+id INT NOT NULL AUTO_INCREMENT,
+prato varchar (30)NOT NULL,
+nome varchar (30)NOT NULL,
+preco decimal,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table pedidos ( 
+id INT NOT NULL AUTO_INCREMENT,
+pedido varchar (30)NOT NULL,
+cliente varchar (30)NOT NULL,
+prato varchar (30)NOT NULL,
+data_pedido decimal,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+
+/*19. Crie um banco de dados chamado Transportadora. Crie três tabelas: 
+Motoristas (motorista, nome, cnh), Veiculos (veiculo, placa, modelo) e 
+Entregas (entrega, motorista, veiculo, data_entrega). */
+
+create database transportadora
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+use transportadora;
+
+/*create table motoristas ( 
+id INT NOT NULL AUTO_INCREMENT,
+motorista varchar (30)NOT NULL,
+nome varchar (30)NOT NULL,
+#cnh int,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;*/
+
+/*create table veiculos ( 
+id INT NOT NULL AUTO_INCREMENT,
+veiculo varchar (30)NOT NULL,
+placa varchar (30)NOT NULL,
+modelo varchar (30)NOT NULL,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;*/
+
+create table entregas ( 
+id INT NOT NULL AUTO_INCREMENT,
+entrega varchar (30)NOT NULL,
+motorista varchar (30)NOT NULL,
+veiculo varchar (30)NOT NULL,
+data_entrega decimal,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+
+#ctrl+enter ativa o raio
+
+
+
+/*20. Crie um banco de dados chamado AgenciaViagens. Crie três tabelas: 
+Clientes (cliente, nome, telefone), Pacotes (pacote, destino, preco) e 
+Reservas (reserva, cliente, pacote, data_reserva).*/
+
+
+create database angenciaviagens
+DEFAULT CHARACTER SET utf8mb4 #codigo regional 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+use angenciaviagens;
+
+create table angenciaviagens ( 
+id INT NOT NULL AUTO_INCREMENT,
+cliente varchar (30)NOT NULL,
+nome varchar (30)NOT NULL,
+telefone int,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+
+create table pacotes ( 
+id INT NOT NULL AUTO_INCREMENT,
+pacote varchar (30)NOT NULL,
+destino varchar (30)NOT NULL,
+preco decimal,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+create table reservas ( 
+id INT NOT NULL AUTO_INCREMENT,
+reserva varchar (30)NOT NULL,
+cliente varchar (30)NOT NULL,
+pacote varchar (30)NOT NULL,
+data_reserva decimal,
+PRIMARY KEY (id)
+)DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+
+
+
 
 
 
