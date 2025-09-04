@@ -1,0 +1,211 @@
+/*1. Criação de Banco de Dados Escola 
+Criar um novo banco de dados chamado "escola" e confirmar sua criação.*/
+CREATE DATABASE escola
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE escola;
+
+
+/*2. Tabela de Alunos 
+Criar uma tabela "alunos" no banco "escola" com campos para ID, nome, data 
+de nascimento, série e nota média.*/
+
+#Criando a tabela produtos
+CREATE TABLE alunos (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   data_nascimento varchar(100) NOT NULL,
+   serie varchar(100) NOT NULL,
+   nota_media int,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+/*3. Cadastro de Alunos 
+Inserir 5 registros de alunos fictícios na tabela criada.*/
+#Inserindo os dados
+INSERT INTO alunos (nome, data_nascimento, serie, nota_media) 
+VALUES
+('Pedro','29-05-2000', 'quinta', '10'), 
+('Fabiana','29-05-2001', 'quinta', '10'), 
+('Julha','29-05-2005', 'quinta', '10'),
+('Ana','29-05-2000', 'quinta', '10'),
+('Maria','29-05-2005', 'quinta', '10');   
+
+/*4. Tabela de Professores 
+Criar uma tabela "professores" no mesmo banco com campos para ID, nome, 
+matéria lecionada e data de contratação. */
+
+CREATE TABLE professores (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   materia varchar(100) NOT NULL,
+   data_contratacao DATE NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+/*5. Cadastro de Professores 
+Inserir 3 registros de professores, sendo que um deve ser cadastrado sem data 
+de contratação específica. */
+#Inserindo os dados
+INSERT INTO professores (nome, materia, data_contratacao) 
+VALUES
+('Amanda','Matematica', '2000-05-06'),
+('Fabiano','Geografica', '2000-07-22'), 
+('Juliano','Portugues','0000-00-00');
+#estava dando erro o anterior, abaixo encontramos o correto
+
+INSERT INTO professores (nome, materia, data_contratacao) 
+VALUES
+	('Fabiano','Geografica', '2000-12-05');
+
+
+INSERT INTO professores (nome, materia, data_contratacao) 
+VALUES
+	('Juliano','Portugues','1900-10-10');
+select * from professores;
+
+
+INSERT INTO professores (nome, materia, data_contratacao) 
+	VALUES ('Amanda','Matematica', '2000-05-06');
+
+/*6. Banco de Dados E-commerce 
+Criar um novo banco chamado "ecommerce" com uma tabela "produtos" 
+contendo informações básicas de produtos.*/
+CREATE DATABASE ecommerce
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE ecommerce;
+
+#Criando a tabela produtos
+CREATE TABLE produtos (
+   id INT NOT NULL AUTO_INCREMENT,
+   produtos varchar(100) NOT NULL,
+   cor varchar(100) NOT NULL,
+	valor decimal(6,2) NOT NULL,
+    quantidade int,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+drop table produtos 
+/*7. Cadastro de Produtos 
+Popular a tabela de produtos com 8 itens diferentes, variando preços e 
+quantidades em estoque. */
+#Inserindo os dados
+INSERT INTO produtos (produtos,cor, valor, quantidade) 
+VALUES
+('Bola','azul', '12', '10'), 
+('Meia','rosa', '15', '05'),
+('Boia','verde', '11', '10'),
+('Coleira','amarela', '19', '22'),
+('Lampada','branca', '11', '10'),
+('Caneta','azul', '01', '10'),
+('Lapis','vermelho', '22', '10'),
+('Caderno','preto', '45', '10');    
+
+/*8. Tabela de Pedidos com Relacionamento 
+Criar uma tabela "pedidos" que se relacione com "produtos" através de chave 
+estrangeira.*/
+
+#Criando a tabela produtos   
+CREATE TABLE pedidos (
+    id INT NOT NULL AUTO_INCREMENT,
+    produto int,
+    quantidade int,
+    data_pedido DATE,
+    PRIMARY KEY (id)
+  )DEFAULT CHARSET utf8mb4
+  
+  /*9. Registro de Pedidos 
+Inserir 5 pedidos na tabela, garantindo que os produtos referenciados existam.*/
+
+ #Inserindo os dados
+    
+INSERT INTO pedidos (produto, quantidade, data_pedido) 
+VALUES
+(1, 10, '2000-05-12'),            
+(2, 5, '2000-05-15'),             
+(3, 10, '2000-05-25'),           
+(4, 22, '2000-05-22'),      
+(5, 10, '2000-09-07');
+
+/*10. Sistema Completo de Biblioteca 
+Criar um banco "biblioteca" com três tabelas relacionadas: livros, usuários e 
+empréstimos, com todos os campos necessários para um sistema básico.*/
+
+CREATE DATABASE biblioteca
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE biblioteca;
+
+CREATE TABLE livros (
+    id INT AUTO_INCREMENT,
+    titulo VARCHAR(200) NOT NULL,
+    autor VARCHAR(100),
+    editora VARCHAR(100),
+    ano_publicacao date,
+    quantidade_disponivel INT,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+CREATE TABLE livros (
+    id INT AUTO_INCREMENT,
+    titulo VARCHAR(200) NOT NULL,
+    autor VARCHAR(100),
+    editora VARCHAR(100),
+    ano_publicacao date,
+    quantidade_disponivel INT,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+#Inserindo livros
+
+
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    telefone VARCHAR(20),
+    data_cadastro DATE ,
+ PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+CREATE TABLE emprestimos (
+    id INT AUTO_INCREMENT ,
+    livro_id INT NOT NULL,
+    usuario_id INT NOT NULL,
+    data_emprestimo DATE NOT NULL,
+    data_devolucao DATE,
+    devolvido BOOLEAN DEFAULT FALSE,
+     PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+#Inserindo usuários
+#verificar estes abaixo
+#Inserindo livros
+INSERT INTO livros (titulo, autor, editora, ano_publicacao, quantidade_disponivel) VALUES
+('1984', 'George Orwell', 'Companhia das Letras', 1949, 5),
+('Dom Casmurro', 'Machado de Assis', 'Editora Ática', 1899, 3);
+
+INSERT INTO usuarios (nome, email, telefone) VALUES
+('Ana Silva', 'ana@email.com', '11988887777'),
+('Carlos Souza', 'carlos@email.com', '21977776666');
+
+#Inserindo empréstimo
+INSERT INTO emprestimos (livro_id, usuario_id, data_emprestimo, data_devolucao, devolvido) VALUES
+(1, 1, '2025-08-01', '2025-08-15', FALSE);
+
+
+
+
+
