@@ -1,0 +1,177 @@
+/*1. Crie a tabela alunos (id, nome, idade) e adicione a coluna matricula.*/
+CREATE DATABASE escola
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+#Selecionando o banco de dados
+USE escola;
+ #Criando a tabela alunos
+CREATE TABLE alunos (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   idade int,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+#deletando>DROP TABLE alunos;
+
+ALTER TABLE alunos
+ADD matricula VARCHAR(20);
+
+/*2. Crie a tabela alunos (id, nome, idade) e adicione a coluna email. */
+ALTER TABLE alunos
+	ADD email VARCHAR(20);
+
+/*3. Crie a tabela alunos (id, nome, idade, matricula, email) e remova a coluna 
+email.*/    
+ALTER TABLE alunos
+	drop email ;
+    
+    
+/*4. Crie a tabela professores (id, nome, disciplina) e adicione a coluna 
+formacao. */
+
+ #Criando a tabela professores
+CREATE TABLE professores (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   disciplina varchar(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE professores
+	ADD professores VARCHAR(20);
+    
+    DROP TABLE professores;
+    
+    /*5. Crie a tabela professores (id, nome, disciplina, formacao) e adicione a 
+coluna registro.*/
+
+ALTER TABLE professores
+	ADD formacao VARCHAR(20);
+    
+    /*6. Crie a tabela professores (id, nome, disciplina, formacao, registro) e 
+remova a coluna formacao. */
+
+ALTER TABLE professores
+	ADD registro VARCHAR(20);
+    
+    alter table professores
+    DROP formacao;
+    
+    /*7. Crie a tabela cursos (id, nome, duracao) e adicione a coluna modalidade.*/
+    
+    #Criando a tabela professores
+CREATE TABLE cursos (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   duracao varchar(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE cursos
+	ADD modalidades VARCHAR(20);
+    
+    /*8. Crie a tabela cursos (id, nome, duracao, modalidade) e adicione a coluna 
+turno.*/
+
+ALTER TABLE cursos
+	ADD turno VARCHAR(20);
+    
+    /*9. Crie a tabela cursos (id, nome, duracao, modalidade, turno) e remova a 
+coluna modalidade. */
+
+alter table cursos
+    DROP modalidades;
+    
+    /*10. Crie a tabela disciplinas (id, nome, codigo) e adicione a coluna 
+carga_horaria.*/
+
+CREATE TABLE disciplinas (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   codigo varchar(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE disciplinas
+	ADD carga_horaria VARCHAR(20);
+    
+    /*11. Crie a tabela disciplinas (id, nome, codigo, carga_horaria) e adicione a 
+coluna ementa. */
+ALTER TABLE disciplinas
+	ADD ementa VARCHAR(20);
+    
+    /*12. Crie a tabela disciplinas (id, nome, codigo, carga_horaria, ementa) e 
+remova a coluna ementa. */
+
+alter table disciplinas
+    DROP ementa;
+    /*13. Crie a tabela turmas (id, nome, ano) e adicione a coluna semestre. */
+    
+    CREATE TABLE turmas (
+   id INT NOT NULL AUTO_INCREMENT,
+   nome varchar(100) NOT NULL,
+   ano int,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE turmas
+	ADD semestre VARCHAR(20);
+    
+    /*14. Crie a tabela turmas (id, nome, ano, semestre) e adicione a coluna turno. */
+    
+    ALTER TABLE turmas
+	ADD turno VARCHAR(20);
+    /*15. Crie a tabela turmas (id, nome, ano, semestre, turno) e remova a coluna 
+turno. */
+
+alter table turmas
+    DROP turno;
+    
+    /*16. Crie a tabela notas (id, aluno_id, disciplina_id) e adicione a coluna nota1. */
+    
+    CREATE TABLE notas (
+   id INT NOT NULL AUTO_INCREMENT,
+   aluno_id varchar(100) NOT NULL,
+   disciplina_id varchar(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE notas
+	ADD nota1 VARCHAR(20)
+    
+    /*17. Crie a tabela notas (id, aluno_id, disciplina_id, nota1) e adicione a coluna 
+nota2. */
+ALTER TABLE notas
+	ADD nota2 VARCHAR(20)
+    
+    /*18. Crie a tabela notas (id, aluno_id, disciplina_id, nota1, nota2) e remova a 
+coluna nota1. */
+alter table notas
+    DROP nota1;
+    
+    /*19. Crie a tabela frequencias (id, aluno_id, disciplina_id) e adicione a coluna 
+presencas. 
+*/
+   CREATE TABLE frequencias (
+   id INT NOT NULL AUTO_INCREMENT,
+   aluno_id varchar(100) NOT NULL,
+   disciplina_id varchar(100) NOT NULL,
+   PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4
+COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE frequencias
+	ADD presencas VARCHAR(20)
+    
+    /*20. Crie a tabela frequencias (id, aluno_id, disciplina_id, presencas) e remova 
+a coluna presencas.*/
+
+alter table frequencias
+    DROP presencas;
